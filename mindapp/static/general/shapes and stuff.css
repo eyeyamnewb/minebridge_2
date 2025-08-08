@@ -1,0 +1,52 @@
+@import url('../variable.css');
+    body {
+        background-color: var(--tertiary-color);
+    }
+
+    .head-clr {
+        background-color: var(--primary-color);
+    }
+    .content {
+        padding: 0.1%;
+        display: block;
+        margin-left: 15vw;
+        margin-top:-2.1vh;
+    }
+    
+    .li-i{
+        display: block;
+        margin-top: 5%;
+    } 
+
+
+    /*############## Card radius ###################*/
+    .crb-F {
+        border-top-left-radius: 1vw;
+        border-top-right-radius: 1vw;
+        border-bottom-left-radius: 1vw;
+        border-bottom-right-radius: 1vw;
+    }
+    .crb-H {
+        border-top-left-radius: 0em;
+        border-top-right-radius: 0em;
+        border-bottom-left-radius: 2vw;
+        border-bottom-right-radius: 2vw;
+    
+    }
+    .crb-HT {
+    border-top-left-radius: 2vw;
+        border-top-right-radius: 2vw;
+        border-bottom-left-radius: 0em;
+        border-bottom-right-radius: 0em;
+    
+    }
+
+@media (min-width: 1024px) {
+
+}
+@media (max-width: 768px){
+
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    
+}

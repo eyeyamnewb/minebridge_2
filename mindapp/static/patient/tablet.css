@@ -1,0 +1,17 @@
+/* Media query for tablet */
+@media (min-width: 768px) and (max-width: 1024px) {
+    :root {
+        --font-size: 1rem;
+        --primary-color: #b97cf1;
+        --secondary-color: #4b4d50;
+        --tertiary-color: #d6d6d6;
+
+    }
+    body {
+        background-color: var(--tertiary-color);
+    }
+
+    .head-clr {
+        background-color: var(--primary-color);
+    }
+}

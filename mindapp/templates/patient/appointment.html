@@ -1,0 +1,84 @@
+{% extends "patient/base.html" %}
+
+{% block content %}
+<div class="apptm-con crb-F">
+
+    <div class="appt-con-line">
+        <div class="appt-con crb-F">
+            <header class="appt-h crb-HT">
+                <header>upcoming appointment</header>
+            </header>
+            <div class="appt-l crb-H">
+                <div class="appt-scrl">
+                    {% for pending in pending_appointment %}
+                    <div class="appt-li crb-F">
+                        <div class="appt-li-i">
+                            <p>Datetime: {{ pending.appointment_date }}, {{ pending.appointment_time }}</p>
+                            <p>Dr: {{ pending.doctor.who.full_name }}</p>
+                            <p>Meeting: {{ pending.appointment_meeting_type }}</p>
+                            <p>Type: {{ pending.appointment_type }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="mt-appt-con">
+                         there are no appointments
+                    </div>       
+                    {% endfor %}
+                </div>
+                {% comment %}empty template{% endcomment %}       
+            </div>
+        </div>
+
+        <div class="appt-con crb-F">
+            <header class="appt-h crb-HT">
+                <header>complete appointment</header>
+            </header>
+            <div class="appt-l crb-H">
+                <div class="appt-scrl">
+                    {% for x in complete_appointment %}
+                    <div class="appt-li crb-F">
+                        <div class="appt-li-i">
+                            <p>Datetime:{{ x.appointment_date }}, {{ x.appointment_date }}</p>
+                            <p>Dr:{{ x.appointment_date }}</p>
+                            <p>Meeting :{{ x.appointment_date }}</p>
+                            <p>Type :{{ x.appointment_date }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="mt-appt-con">
+                         there are no appointments
+                    </div>       
+                    {% endfor %}
+                </div>
+                {% comment %}empty template{% endcomment %}       
+            </div>
+        </div>
+
+         <div class="appt-con crb-F">
+            <header class="appt-h crb-HT">
+                <header>cancelled appointment</header>
+            </header>
+            <div class="appt-l crb-H">
+                <div class="appt-scrl">
+                    {% for x in complete_appointment %}
+                    <div class="appt-li crb-F">
+                        <div class="appt-li-i">
+                            <p>Datetime:{{ x.appointment_date }}, {{ x.appointment_date }}</p>
+                            <p>Dr:{{ x.appointment_date }}</p>
+                            <p>Meeting :{{ x.appointment_date }}</p>
+                            <p>Type :{{ x.appointment_date }}</p>
+                        </div>
+                    </div>
+                    {% empty %}
+                    <div class="mt-appt-con">
+                         there are no appointments
+                    </div>       
+                    {% endfor %}
+                </div>
+                {% comment %}empty template{% endcomment %}       
+            </div>
+        </div>
+    </div>
+
+</div>
+{% endblock %}

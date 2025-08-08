@@ -1,0 +1,121 @@
+
+@import url('../variable.css');
+
+@media (min-width: 1024px) {
+     .user-greet {
+        display: block;
+        margin-left: 2vw;
+        margin-top: 2vh;
+        font-size: var(--bigfont-size);
+        color: var(--secondary-color);
+        text-decoration: underline;
+    }
+    
+    .emo{
+        max-width: 80vw;
+    }
+    .emo-header {
+        display:block;
+        background-color: var(--quaternary-color);
+        width: 80vw;
+        height: 7vh;
+        
+    }
+    .emo-header h2{
+        margin-left: 5%;
+        padding: 1%;
+        font-size: var(--header-font-size);
+    }
+    /*emotion submit button*/
+    
+    /*dashboard patient item contaier*/
+    .dashP-i{display: flex;}
+
+    .dp-head{
+        display: block;
+        margin-top: 1vh;
+        font-size: var(--bigfont-size);
+        color: black;
+    }
+    /*dashbaord task item container*/
+    .task-con {
+        display: block;
+        margin-left: 2vw;
+        padding: 10px;
+        width: 45vw;
+        height: 70vh;
+
+        
+    }
+    .task-item {
+        display: flex;;
+    }
+
+    .tas {
+        display: block;
+        width: 50%;
+        height: 70vh;
+        background-color: var(--quinary-color);
+    }
+
+    .tas-i{
+        overflow: auto;
+        height: 85%;
+    }
+    .tas-il {
+        display: block;
+        background-color: pink;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        width: 90%;
+        margin-left: 5%;
+    }
+    .p-task {
+        margin-left: 1vw;
+    }
+    .tas-div {
+    display: block;
+    background-color: var(--secondary-color);
+    width: 80%;
+    height: 5px;
+    margin-top: -3%;
+    margin-left: 10%;
+    }
+    /*calendar container*/
+    .cal-con{
+        display: block;
+        width: 31.5vw;
+        padding:10px ; 
+       }
+    
+       /*calendar item */
+    .cal-i {
+        width: 98%;
+        height: 67vh;
+        background-color: var(--quinary-color);
+        margin-top: -0%;
+        padding: 10px;
+    }
+     
+    /*calendar header*/
+    .cal-head{
+        margin-top: -3%;
+        margin-left: 10%;
+        margin-bottom: 6%;
+        
+    }
+
+    .g-cal{
+        display: block;
+        height: 80%;
+        margin-left: 0%;
+        margin-top: 0%;
+
+    }
+
+}
+@media (max-width: 768px){
+
+}
+@media (min-width: 768px) and (max-width: 1024px){
+
+}

@@ -1,0 +1,33 @@
+<!-- Registration Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'patient/desktop.css' %}">
+    <link rel="stylesheet" href="{% static 'general/detail-fill.css' %}">
+    <link rel="stylesheet" href="{% static 'mobile.css' %}">
+    <link rel="stylesheet" href="{% static 'tablet.css' %}">
+</head>
+
+<body style="padding: 1px;">
+    <div class="detail-form-box crb-F">
+        <div class="detail-header crb-HT">
+            <header>
+                details
+            </header>
+        </div>
+        <div class="detail-body">
+            <form method="post" action="{%url 'details'%}">
+                {%csrf_token%}
+                {{form}}
+                <div class="detail-sub-box crb-F">
+                    <button class="dtl-sub-btn crb-F" type="submit">enter</button>
+                </div>
+            </form>
+        </div>
+    </div>
+    
+</body>

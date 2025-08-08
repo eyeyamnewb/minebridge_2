@@ -1,0 +1,175 @@
+{% extends "practitioner/base.html" %}
+
+{% load static % }
+
+{%block content %}
+<div class="ana-con crb-F" >
+    <div class="anali-box crb-F" >
+        <div class="anali-h crb-HT">
+            <header>
+                patient mental health overview
+            </header>
+        </div>
+        <div class="anali-tbl">
+            <table class="anali-li">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>gender</th>
+                        <th>age</th>
+                        <th>category</th>
+                        <th>stability</th>
+                        <th>priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in patient_mental_States %}
+                    <tr>
+                        <td>{{x.who.who.who.id}}</td>
+                        <td>{{x.who.who.full_name}}</td>
+                        <td>{{x.who.who.gender}}</td>
+                        <td>{{x.who.who.age}}</td>
+                        <td>{{x.mental_health_category}}</td>
+                        <td>{{x.mental_health_status}}</td>
+                        <td>{{x.mental_health_priority}}</td>
+                    </tr>
+                    {%endfor%}
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="uppr-chrt">
+        <div class="prbar-box crb-F">
+            <div class="prbar-box-h crb-HT">
+                <header>
+                    gender group with mental health
+                </header>
+            </div>
+            <div class="prbar-b">
+                <canvas id="genderBar">
+                    {%comment%} bar chart for gender group suffering  from mental health {%endcomment%}
+                </canvas>
+            </div>
+        </div>
+        <div class="age-gen-box">
+            {%comment%} box cover age ange gender {%endcomment%}
+            <div class="page-box crb-F">
+                <div class="page-h crb-HT">
+                    <header>patient age </header>
+                </div>
+                <div class="page-pie">
+                    <canvas id="agePie">
+                        {%comment%} Pie chart for age {%endcomment%}
+                    </canvas>
+                </div>
+            </div>
+            <div class="pgen-ratio-box crb-F">
+                <div class="pgen-rat-h crb-HT">
+                    <header>
+                        patient gender ratio
+                    </header>
+                </div>
+                <div class="pgen-pie">
+                    <canvas id="genderPie">
+                        {%comment%} Pie chart {%endcomment%}
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    const genderLabels = {{ gender_labels|safe }};
+    const genderCounts = {{ gender_counts|safe }};
+    const ageLabels = {{ age_labels|default:"[]"|safe }};
+    const ageCounts = {{ age_counts|default:"[]"|safe }};
+
+    //{%comment%} bar variable{%endcomment%}  
+    const barGenders = {{ bar_genders|safe }};
+    const barCategories = {{ bar_categories|safe }};
+    const barDataMatrix = {{ bar_data_matrix|safe }};
+
+    
+
+{%comment%}//###### this one is for the pie chart scripts on gender######  {%endcomment%}
+{%comment%}//############################################################  {%endcomment%}
+
+new Chart(document.getElementById('genderPie'), {
+    type: 'pie',
+    data: {
+        labels: genderLabels,
+        datasets: [{
+            data: genderCounts,
+            backgroundColor: ['#36A2EB', '#FF6384', '#FFCE56', '#8AFFC1'],
+        }]
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'bottom' },
+            title: { display: true, text: 'Patient Gender Ratio' }
+        }
+    }
+});
+
+{%comment%}//###### this one is for the age pie ######  {%endcomment%}
+
+ // Age Pie Chart
+  new Chart(document.getElementById('agePie'), {
+      type: 'pie',
+      data: {
+          labels: ageLabels,
+          datasets: [{
+              data: ageCounts,
+              backgroundColor: ['#A3E635', '#FBBF24', '#F472B6', '#60A5FA', '#34D399', '#F87171', '#818CF8'],
+          }]
+      },
+      options: {
+          responsive: true,
+          plugins: {
+              legend: { position: 'bottom' },
+              title: { display: true, text: 'Patient Age Distribution' }
+          }
+      }
+  });
+
+
+{%comment%}//########## this one for gender mental victim bar ###########  {%endcomment%}
+
+{%comment%} Prepare datasets for Chart.js{%endcomment%}
+// Each gender is a dataset, each category is an x-axis label
+const barDatasets = barGenders.map((gender, idx) => ({
+    label: gender.charAt(0).toUpperCase() + gender.slice(1),
+    data: barDataMatrix[idx], // Each row is a gender, columns are categories
+    backgroundColor: [
+        '#36A2EB', '#FF6384', '#FFCE56', '#8AFFC1', '#A3E635', '#FBBF24', '#F472B6'
+    ][idx % 7],
+}));
+
+new Chart(document.getElementById('genderBar'), {
+    type: 'bar',
+    data: {
+        labels: barCategories, // X axis: all categories from choices
+        datasets: barDatasets
+    },
+    options: {
+        responsive: true,
+        plugins: {
+            legend: { position: 'top' },
+            title: { display: true, text: 'Gender Group by Mental Health Category' }
+        },
+        scales: {
+            y: { beginAtZero: true }
+        }
+    }
+});
+
+</script>
+
+
+
+{%endblock%}

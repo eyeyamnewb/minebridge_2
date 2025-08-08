@@ -1,0 +1,203 @@
+{% extends "practitioner/base.html" %}
+{% load static %}
+<!-- Content for dashboard page -->
+{% block content %}
+<link rel="stylesheet" href="{% static 'doctor/patient-form.css' %}">
+<div class="mdsh-con crb-F">
+    
+     <div class=" dsh-tas-frm crb-F" id="task-assign-dash">
+        <form method="post" action="{%url 'assign_task' %}" class="ass-tas-frm">
+            {% csrf_token %}
+            {{form}}
+            <div style="display: flex;">
+                 <button type="submit" class="btn dsh-ass-btn crb-F">submit</buttons>  
+                <button class="btn dsh-ass-btn crb-F" style="margin-left:20% ;" onclick="closeAssignDsh()">close</button>  
+            </div> 
+           
+        </form>    
+    </div>
+
+    <div class="pat-dtl-box">
+
+    </div>
+
+    <div class="pat-li-con crb-F">
+        {%comment%} containter for list of patients{%endcomment%}
+        <div class="pdsh-con crb-HT" style="display: flex;">
+            <header>PATIENT ONBOARD</header>
+             <div class="asgn-tas-btn" onclick="openAssignDsh()">+</div>
+        
+       
+      
+        </div>
+        <div class="pdsh-li-con crb-H">
+            <div class="pdsh-li">
+                <table class="pdsh-tbl ">
+                    <thead>
+                        <tr>
+                            {%comment%} tables head {%endcomment%}
+                            <th>id</th>
+                            <th>name</th>
+                            <th>age</th>
+                            <th>gender</th>
+                            <th>contact</th>
+                            <th>previous mood</th>
+                            <th>latest mood</th>
+                            <th>action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                    {% for x in patient %}
+
+
+                    {%comment%} tables list, functioon above cycles through patient object {%endcomment%}
+                        <tr>
+                            <td>{{x.who.id}}</td>
+                            <td>{{x.who.full_name}}</td>
+                            <td>{{x.who.age}}</td>
+                            <td>{{x.who.gender}}</td>
+                            <td>{{x.who.phone}}</td>
+                            <td>{{x.previous_mood}}</td>
+                            <td>{{x.latest_mood}}</td>
+                            <td>
+                            {%comment%} button to pull up patient details and provide data for javascripts {%endcomment%}
+                            <button class="btn p-dtail-dsh crb-F"
+                            data-fullname="{{ x.who.full_name }}"
+                            data-email="{{ x.who.who.email }}"
+                            data-age="{{ x.who.age }}"
+                            data-gender="{{ x.who.gender }}"
+                            data-contact="{{ x.who.phone }}"
+                            data-origin="{{ x.who.country }}"
+                            data-status="{{ x.who.relationship }}"
+                            data-bday="{{ x.who.dob }}"
+                            data-mood="{{x.latest_mood}}"
+
+                            onclick="detailOpen()"> details </button>
+                            </td>
+                        </tr>
+                        
+                    {%empty%}
+                        <tr>
+                            <td colspan="8">No patients found.</td>
+                        </tr>
+                    {%endfor%}
+                    </tbody>
+                </table>
+            <div class="pat-dtl-mdl-box crb-F" id="patient-modal" >
+                <div class="pat-dtl-cntn">
+                    <h3 id="modal-name"></h3>
+                    <div class="mini-dtlbox">
+                        <div class="mini-stat1 ">
+                            <p>contact: <span id="modal-contact"></span></p>
+                        <p>Email: <span id="modal-email"></span></p>                    
+                        <p>Age: <span id="modal-age"></span></p>
+                        <p>Gender: <span id="modal-gender"></span></p>
+                        </div>
+                        <div class="mini-stat2 stat-spc">
+                            <p>Marital status: <span id="modal-status"></span></p>
+                            <p>DOB: <span id="modal-bday"></span></p>                    
+                            <p>country: <span id="modal-country"></span></p>
+                            <p>latest mood: <span id="modal-mood"></span></p>
+                        </div>
+                    </div>
+                    
+                    <button onclick="detailclose()" class=" dsh-close-prac crb-F">Close</button>
+                </div>
+                    
+            </div>
+
+            </div>
+        </div>
+        
+    </div>
+    {%comment%} dashboard appointment containter {%endcomment%}
+    <div class="dsh-appt-con crb-F">
+        <div class="dsh-appt-h crb-HT">
+            <header>APPOINTMENT OVERVIEW</header>
+        </div>
+        {%comment%} appointment content {%endcomment%}
+        <div class="dsh-appt-cntn crb-H">
+            <div class="dappt-box crb-F">
+                <div class="dappt-h">today appointment</div>
+                <div class="dappt-div crb-F"></div>
+                <div class="dappt-li ">
+                    {% for today in today_appointments %}  
+                    <div class="dappt-li-box crb-F">
+                        <p>{{today.who.who.full_name}}</p>
+                        <p>{{today.appointment_meeting_type}}</p>
+                        <p>{{today.appointment_type}}</p>
+                        <p>{{today.appointment_status}}</p>
+                        <p>date: {{today.appointment_date}}.  time:{{today.appointment_date}}</p>
+                        <button class="btn">View Details</button>
+                    </div>
+                     {%empty%}
+                    <p style="font-weight: bold;
+                    margin-top: 30%;
+                    margin-left: 15%;
+                    font-size: 3em;"> no appointments</p>
+                    {%endfor%}
+
+                </div>    
+            </div>
+
+            {%comment%} here be upcoming {%endcomment%}
+
+            <div class="dappt-box crb-F">
+                <div class="dappt-h">upcoming appointment</div>
+                <div class="dappt-div crb-F"></div>
+                <div class="dappt-li ">
+                    {% for x in upcoming_appointments %}  
+                    <div class="dappt-li-box crb-F">
+                        <p>{{x.who.who.full_name}}</p>
+                        <p>{{x.appointment_meeting_type}}</p>
+                        <p>{{x.appointment_type}}</p>
+                        <p>{{x.appointment_status}}</p>
+                        <p>date: {{x.appointment_date}}.  time:{{x.appointment_date}}</p>
+                        <button class="btn">View Details</button>
+                    </div>
+                    {%empty%}
+                    <p style="font-weight: bold;
+                    margin-top: 25%;
+                    margin-left: 25%;
+                    font-size: 3em;"> no upcoming appointments</p>
+                    {%endfor%}
+                </div>    
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+document.querySelectorAll('.p-dtail-dsh').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        document.getElementById('modal-name').textContent = this.dataset.fullname;
+        document.getElementById('modal-email').textContent = this.dataset.email;
+        document.getElementById('modal-age').textContent = this.dataset.age;
+        document.getElementById('modal-gender').textContent = this.dataset.gender;
+        document.getElementById('modal-contact').textContent = btn.dataset.contact;
+        document.getElementById('modal-country').textContent = btn.dataset.origin;
+        document.getElementById('modal-mood').textContent = btn.dataset.mood;
+        document.getElementById('modal-bday').textContent = btn.dataset.bday;
+        document.getElementById('modal-status').textContent = btn.dataset.status;
+    });
+});
+
+function detailOpen(btn){
+    document.getElementById('patient-modal').classList.add('show');
+};
+
+function detailclose(btn){
+    document.getElementById('patient-modal').classList.remove('show');
+};
+
+function openAssignDsh(){
+    document.getElementById('task-assign-dash').classList.add('show');
+};
+
+function closeAssignDsh(){
+    document.getElementById('task-assign-dash').classList.remove('show');
+};
+
+</script>
+{% endblock %}
+

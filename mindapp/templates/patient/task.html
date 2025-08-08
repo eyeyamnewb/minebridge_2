@@ -1,0 +1,61 @@
+{% extends "patient/base.html" %}
+
+{%block content %}
+<div class="TSK-con crb-F">
+    <div class="TSK-i">
+    {%comment%} assign task go here {%endcomment%}
+        <div class="TSK-inc crb-F">
+            <div class="TSK-h crb-HT">
+                <header>Assigned task</header>
+            </div>
+            <div class="TSK-l crb-H">
+                {% for task in assign_task %}
+                    <div class="TSK-li crb-F">
+                        <form method="POST" action="{%url 'complete_task' %}" class="TSK-lif">
+                            {% csrf_token %}
+                            <header>{{ task.task_title }}</header>
+                            <div class="tasp-div crb-F"></div>
+                            <p>Description: {{ task.task_description }}</p>
+                            <p>Due: {{ task.task_due }}</p>
+                            <p>Status: {{ task.task_status }}</p>
+                        {% comment %} button for submit task to complete {% endcomment %}
+                            <input type="hidden" name="task_id" value="{{ task.id }}">
+                            <button class="btn TSKbtn crb-F" type="submit"> complete </button>
+                        </form>
+                </div>
+                {%empty%}
+                    <div class="Mt-tas">no new task</div>
+                {%endfor%}
+                
+            </div>
+        </div>
+    {%comment%} cpmlete task stuff go here {%endcomment%}
+        <div class="TSK-inc crb-F">
+            <div class="TSK-h crb-HT">
+                <header>completed task</header>
+            </div>
+            <div class="TSK-l crb-H">
+                {% for task in complete_task %}
+                    <div class="TSK-li crb-F">
+                        <form method="POST" action="{%url 'complete_task' %}" class="TSK-lif">
+                            {% csrf_token %}
+                            <header>{{ task.task_title }}</header>
+                            <div class="tasp-div crb-F"></div>
+                            <p>Description: {{ task.task_description }}</p>
+                            <p>Due: {{ task.task_due }}</p>
+                            <p>Status: {{ task.task_status }}</p>                        
+                        </form>
+                </div>
+                {%empty%}
+                    <div class="Mt-tas">no task completed</div>
+                {%endfor%}
+                
+            </div>
+        </div>
+    </div>
+    {%comment%} something can be put down here {%endcomment%}
+    <div class="blank">
+    
+    </div>
+</div>
+{%endblock%}<!-- Content for task page --><!-- Content for task page -->

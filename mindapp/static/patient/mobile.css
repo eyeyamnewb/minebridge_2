@@ -1,0 +1,19 @@
+
+/* Media query for mobile */
+@media (max-width: 768px) {
+
+    :root {
+        --font-size: 1rem;
+        --primary-color: #b97cf1;
+        --secondary-color: #4b4d50;
+        --tertiary-color: #d6d6d6;
+
+    }
+    body {
+        background-color: var(--tertiary-color);
+    }
+
+    .head-clr {
+        background-color: var(--primary-color);
+    }
+}

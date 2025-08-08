@@ -1,0 +1,61 @@
+@import url(../variable.css);
+
+@media (min-width: 768px) {
+
+    /*################# input fields ############################*/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+select,
+textarea {
+    top: 20vw;
+    width: 100%;
+    padding: 1.2vw;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+
+/*################# containers ############################*/
+
+    .reg-box{
+    background-color: var(--quinary-color);
+    box-shadow: 0 0 4px 4px gray;
+    transform: translateX(15vw) translateY(20vh);
+    padding: 1px;
+    width: 70%;
+}
+
+.reg-head{
+    background-image: var(--head-gradient);
+    font-size: 2vw;
+    font-weight: bold;
+    box-shadow: 0 0 4px 4px gray;
+    padding: 1px;
+}
+.reg-head header{
+    margin: 2%;
+    margin-left: 40%;
+}
+.reg-body{
+    font-weight: bold;
+    margin: 5%;
+}
+
+/*################# button fields ############################*/
+
+.reg-btn {
+    border-style: none;
+    width: 40%;
+    height: 5vh;
+    background-image: var(--head-gradient);
+}
+
+    
+
+    
+}

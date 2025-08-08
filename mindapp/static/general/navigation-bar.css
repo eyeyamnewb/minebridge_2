@@ -1,0 +1,40 @@
+@import url('../variable.css');
+
+@media (min-width: 1024px) {
+     .navi {
+        display:flex;
+        position: fixed;
+        background-color: var(--secondary-color);
+        color: white;
+        width: 15vw;
+        padding: 0.5rem;
+        z-index: 1000;
+        height: 100vh;
+        margin-top: 1vh;
+        margin-left: -1vw;
+    }
+    .port-crd {
+        font-size: var(--comical-font-size);
+    }
+    .nav-li {
+        display: flex;
+        flex-direction: column;
+        color: var(--secondary-color);
+    }
+
+    .li-i {
+        font-size: var(--header-font-size);
+    }
+    .nav-li li a {
+
+        color: white;
+        text-decoration: none;
+    }
+
+}
+@media (max-width: 768px){
+
+}
+@media (min-width: 768px) and (max-width: 1024px){
+    
+}

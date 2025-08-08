@@ -1,0 +1,73 @@
+@import url(../variable.css);
+
+@media (min-width: 768px) {
+
+    /*################# input fields ############################*/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="number"],
+input[type="date"],
+select,
+textarea {
+    top: 20vw;
+    width: 100%;
+    padding: 1.2vw;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+label {
+    font-size: 1.2vw;
+    font-weight: bold;
+    margin-bottom: 5px;
+    display: block;
+}
+
+
+/*################# containers ############################*/
+.detail-form-box{
+    box-shadow: 0 0 4px 4px gray  ;
+    width: 60vw;
+    transform: translateX(20vw) translateY(5vh);
+    padding: 1px;
+    margin-bottom: 5vw;
+}
+
+.detail-header{
+    background-image: var(--head-gradient) ;
+    box-shadow: 0 0 4px 4px gray ;
+    font-size: 2vw;
+    font-weight: bold;
+    padding: 1px;
+}
+
+.detail-header header{
+    margin: 1%;
+    margin-left: 45%;
+}
+
+.detail-body{
+    margin: 5%;
+}
+
+/*################# button fields ############################*/
+
+.dtl-sub-btn {
+    border-style: none;
+    width: 100%;
+    height: 100%;
+    background-image: var(--head-gradient);
+    
+    
+}
+
+.detail-sub-box {
+    background-color: none;
+    margin-top: 5%;
+    height: 5vh;
+}
+}

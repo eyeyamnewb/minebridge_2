@@ -1,0 +1,16 @@
+# Ignore Python cache files
+__pycache__/
+*.py[cod]
+
+# Ignore environment variables
+.env
+
+# Ignore Django migrations
+migrations/
+
+# Ignore IDE-specific files
+.vscode/
+.idea/
+credentials.json
+
+db.sqlite3

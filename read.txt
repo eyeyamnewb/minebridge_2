@@ -1,0 +1,47 @@
+hello and welcome to the dev side of mindbridge team
+
+these here are all the source file that keeps the apps up and running and intact,
+for security reason if wea are working in the backend do contact the CTO for
+clearance.
+
+as of now the one writing this is the current backend cao cao and i will leave my signature 
+as #*# cao cao #*# for everytime this document is updated. do leave yours aswell for ease of referral
+
+------AUTHOR-----------
+1. #*# cao cao #*#
+2.
+
+update log #1
+
+to start off the application itself is run based on the Django framework as we're focusing on faster deployment and integrations, other than that, as the only back end developer , i'm just more amiliar with python syntax format than anything else that all.
+
+now how to get Django? firstly make sure the machine you use has python installed , preferably python 3.11 and above , although alternately you can install anaconda from :
+
+##!!! note as im writing this, i'm running on the window operating system, for other they may vary ###!!!
+
+	https://www.anaconda.com/download
+
+from there go to your taskbar and search for python terminal prompt or anaconda terminal prompt
+and in the prompt you have 2 ways of installing it, the first method is to run the command pip install (package name here) which will download and install that specific package only, the second is by going to the project directory with cd commands followed by directory E.g: D:/user,
+
+from the directory run the setup.py by typing it into the terminal, this will install all the required dependencies for the project into your machine although for this one its highly recommended for you to have a virtual environment set up first
+
+to make a virtual environment run the command python -m venv ENV_DIR (folder name here)
+once that is done, go to the newly created folder directory and then go to script folder,
+from there run activate.bat
+
+after all that go back a level by typing cd ../ and then move the project file into the virtual env folder then go to project directory using the prompt, then you can run the setup.py
+
+
+for now i leave all of the documentation as comments inside the working file inside the project app folder, primarily the files are: 
+
+view.py, 
+forms.py,
+models.py,
+urls.py,
+
+and for other folder inside the app folder
+-templates and static
+ these folder contain the html code and the css and javascript code
+ #future note: here will be have the ai model as well located like in the static
+  

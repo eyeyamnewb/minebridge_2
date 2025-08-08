@@ -1,0 +1,36 @@
+<!-- Login Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'patient/desktop.css' %}">
+    <link rel="stylesheet" href="{% static 'mobile.css' %}">
+    <link rel="stylesheet" href="{% static 'tablet.css' %}">
+    <link rel="stylesheet" href="{% static 'general/login.css' %}">
+</head>
+<body>
+
+    <div class="login-box crb-F">
+        <div class="login-head crb-HT">
+            <header>Login</header>
+        </div>
+        <div class="login-body">
+            <form method="post" action="{% url 'login' %}">
+                <!-- Ensure the form submits to the correct URL -->
+                {% csrf_token %}
+                {{ form.as_p }}
+                <div class="login-btn" style="display: flex;" >
+                    <button class="login-btnM crb-F" type="submit">Login</button>
+                    <button class="login-btnM crb-F"><a href="#under construction">Forgot password?</a></button>
+                </div>
+                
+            </form>
+        </div>
+    </div>
+    <h1></h1>
+    
+</body>
+</html>

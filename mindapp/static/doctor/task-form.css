@@ -1,0 +1,119 @@
+/* Task Form CSS */
+@import url(../variable.css);
+/* Mobile */
+@media (max-width: 768px) {
+    /* Add mobile-specific styles here */
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Add tablet-specific styles here */
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+
+    /*############### input fields #################*/
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],         
+    input[type="date"],
+    input[type="time"],                         
+    select,
+    textarea {          
+        width: 100%;
+        padding: 0.5vh;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        font-size: 16px;
+        box-sizing: border-box;
+    }
+
+    /*############### container #################*/
+
+    label {
+        font-weight: bold;
+        font-size: 1em;
+    }
+
+    /*x-comm*/
+    .mdl-pat-form{
+        opacity: 0;
+        background-color: var(--senary-color);
+        position: fixed;
+        z-index: 1000;
+        height: 60vh;
+        width: 30vw;
+        box-shadow: 3px 3px 4px 4px gray;
+        transform: translateY(-60vh) translateX(20vw);
+        transition: ease 0.3s;
+    }
+
+    .mdl-pat-form.show{
+        opacity: 100;
+        background-color: var(--senary-color);
+        position: fixed;
+        z-index: 1000;
+        height: 60vh;
+        width: 30vw;
+        box-shadow: 3px 3px 4px 4px gray;
+        transform: translateY(-60vh) translateX(20vw);
+        transition: ease 0.3s;
+    }
+
+    .men-inform {
+        display: none;
+        transform: translateY(-0vh);
+    }
+
+    .men-inform  select{
+        padding: 1.5vh;
+    }
+
+     .men-inform.show {
+        display: block;
+        
+    }
+    .task-pat-form{
+        display: none;
+        transform: translateY(-0vh);
+    }
+
+    .task-pat-form.show{
+        display: block;
+        
+    }
+
+    /*############### button fields #################*/
+
+    .close-button {
+        position: absolute;
+        top: 1vh;
+        right: 1vw;
+        background-color: transparent;
+        border: none;
+        font-size: 1.5em;
+        cursor: pointer;
+        transform:translateX(1.5vw) translateY(-2vh);
+        width: 2vw;
+    }
+    .btn{
+        border-style: none;
+        width: 80%;
+        transform: translateX(10%);
+        background-image: var(--head-gradient);
+        font-weight: bold;
+    }
+
+    .men-btn{
+        height: 5vh;
+        margin-top: 10vh;
+    }
+    .tsk-btn{
+        margin-top: 5vh;
+        height: 5vh;
+    }
+
+
+}

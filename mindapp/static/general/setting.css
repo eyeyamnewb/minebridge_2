@@ -1,0 +1,89 @@
+/* Appointment Form CSS */
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Add mobile-specific styles here */
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Add tablet-specific styles here */
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+    /* Add desktop-specific styles here */
+
+
+    /*############### input fields #################*/
+
+    input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+#id_contact,
+select,
+textarea {
+    top: 20vw;
+    width: 100%;
+    padding: 1.2vw;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+label {
+    font-weight: bold;
+    display: block;
+}
+
+/*############### container #################*/
+ /*----------------- password change box -----------------*/
+     .set-con{
+            background-color: var(--senary-color);
+            padding: 1px;
+            margin-top:3vh ;
+            margin-left: 1vw;
+        }
+        .pw-cng-con{
+            width: 50%;
+            margin:5%;
+            margin-left: 20%;
+            background-color: var(--quinary-color);
+            box-shadow: 0 0 4px 4px gray;
+            padding: 1px;
+        }
+        .pw-cng-h{
+            background-image: var(--head-gradient);
+            margin-left: 0;
+            box-shadow: 0 0 4px 4px gray;
+        }
+        .pw-cng-h header{
+            
+            margin-left: 2%;
+            font-size: var(--header-font-size);
+            font-weight: bold;
+        }
+        
+        .pw-frm{
+            /*background-color: red;*/
+            width: 90%;
+            margin:5%;
+        }
+
+/*##################button fields #################*/
+
+.set-btn {
+    background-image: var(--head-gradient);
+    width: 30vw;
+    transform: translateX(3vw);
+    height: 4vh;
+}
+.set-btn:hover {
+    background-image: var(--head-gradient);
+    box-shadow: 0 0 4px 4px gray;
+    transition: ease 0.1s;
+}
+}

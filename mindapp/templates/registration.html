@@ -1,0 +1,30 @@
+<!-- Registration Page -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'patient/desktop.css' %}">
+    <link rel="stylesheet" href="{% static 'general/register.css' %}">
+    <link rel="stylesheet" href="{% static 'mobile.css' %}">
+    <link rel="stylesheet" href="{% static 'tablet.css' %}">
+</head>
+<body>
+
+    <div class="reg-box crb-F">
+        <div class="reg-head crb-HT">
+            <header>Registration</header>
+        </div>
+        <div class="reg-body">
+            <form method="post">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class = "reg-btn" type="submit">Register</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>

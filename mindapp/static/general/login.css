@@ -1,0 +1,72 @@
+@import url(../variable.css);
+
+@media (min-width: 768px) {
+
+/*################# input fields ############################*/
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="number"],
+#id_contact,
+select,
+textarea {
+    top: 20vw;
+    width: 100%;
+    padding: 1.2vw;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+form {
+    font-weight: bold;
+}
+
+/*################# containers ############################*/
+
+    .login-box{
+    display: block;
+    box-shadow:0 0 4px 4px gray ;
+    background-color: var(--quinary-color);
+    width:50vw ;
+    height: auto;
+    padding: 1px;
+    transform: translateX(25vw) translateY(25vh);
+}
+
+.login-head{
+    background-image: var(--head-gradient);
+    box-shadow: 0 0 4px 4px gray;
+    font-size: 2vw;
+    font-weight: bold;
+    padding: 1px;
+}
+
+.login-head header{
+margin: 2%;    
+margin-left: 40%;
+}
+
+.login-body{
+    margin: 10%;
+    font-weight: bold;
+    width: 80%;
+}
+
+.login-btn button{
+    margin-left: 5%;
+}
+    /*################# button fields ############################*/
+
+    .login-btnM {
+        border-style: none;
+        width: 40%;
+        height: 5vh;
+        background-image: var(--head-gradient);
+    }
+
+        
+    }

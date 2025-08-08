@@ -1,0 +1,161 @@
+@import url(../general/variable.css);
+
+/*####################################################
+#################### Mobile ###########################
+######################################################## */
+@media (max-width: 768px) {
+    /* Add mobile-specific styles here */
+}
+
+/*####################################################
+######################### Tablet #####################
+###################################################### */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Add tablet-specific styles here */
+}
+
+/*##########################################################
+ #########################Desktop#########################
+########################################################## */
+@media (min-width: 1025px) {
+    /*############## input field ####################*/
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea {
+    width: 100%;
+    height: 5vh;
+    padding: 0.1vw;
+    border: 1px solid gray;
+    border-radius: 1px;
+    font-size: 1em;
+    
+}
+
+textarea {
+    height: 20vh;}
+
+
+
+    /*############## container ####################*/
+    
+    /* for task */
+    .dsh-tas-frm{
+        background-color: var(--senary-color);
+        box-shadow:  0 3px 4px 4px gray;
+        position: fixed;
+        z-index: 1000;
+        padding: 1vw;
+        width: 25vw;
+        transform: translateX(-50vw) translateY(5vw);
+        opacity: 0;
+        transition: ease 0.3s;
+    }
+
+    .dsh-tas-frm.show {
+        display: block;
+        transform: translateX(20vw) translateY(5vw);
+        opacity: 100;
+        transition: ease 0.3s;
+    }   
+
+
+    /*for patients*/
+    .pat-dtl-mdl-box{
+        background-color: var(--senary-color);
+        position: fixed;
+        width: 30vw;
+        height: 40vh;
+        opacity: 0;
+        transform: translate(20vw, 10vh);
+        box-shadow: 3px 3px 4px 4px gray; 
+        padding: 5px;
+        transition: ease 0.3s;
+    }
+
+    .pat-dtl-mdl-box.show{
+        background-color: var(--senary-color);
+        position: fixed;
+        width: 30vw;
+        height: 40vh;
+        opacity: 100;
+        transform: translate(20vw, -10vh);
+        box-shadow: 3px 3px 4px 4px gray; 
+        padding: 5px;
+        transition: ease 0.3s;
+    }
+
+    .pat-dtl-cntn{
+        font-weight: bold;
+        margin-left: 5%;
+        padding: 1px;
+    }
+
+    .pat-dtl-cntn h3{
+        margin-top: 1%;
+        margin-bottom: -1.5%;
+        font-size: 2em;
+        text-decoration: underline;
+    }
+
+    .pat-dtl-cntn button{
+        font-weight: bold;
+        transform: translateX(0%);
+        border-style: none;
+        background-image: var(--head-gradient);
+        height:2vw;
+        width: 50%;
+    }
+
+    .mini-dtlbox{
+        display: flex;
+        background-color: none;
+        width: 28vw;
+        height: 30vh;
+        margin-left: -0;
+    }
+
+    .mini-stat1{display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        margin-left: 1%;
+        
+        
+    }
+
+    .mini-stat2{display: flex;
+        flex-direction: column;
+        width: 50%;
+        height: 100%;
+        margin-left: 1%;   
+    }
+
+    .stat-spc {margin-left: 10%;}
+    
+    /*############## form font ####################*/
+    
+    
+    form label {
+        font-size: 1.2em;
+        font-weight: bold;
+    }
+
+    /*############## button ####################*/
+    .dsh-ass-btn {
+    border-style: none;
+    width: 40%;
+    height: 5vh;
+    background-image: var(--head-gradient);
+    font-weight: bold;
+    font-size: 1em;
+    margin-top: 5%;
+    }
+
+    .dsh-close-prac {
+        margin-left: 20%;
+    }
+
+}

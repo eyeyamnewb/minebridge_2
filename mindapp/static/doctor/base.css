@@ -1,0 +1,22 @@
+@import url(../variable.css);
+
+/* Mobile */
+@media (max-width: 768px) {
+    /* Add mobile-specific styles here */
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Add tablet-specific styles here */
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+    /* Add desktop-specific styles here */
+    
+    .port-crd{
+        font: 1em;
+    }
+
+
+}

@@ -1,0 +1,89 @@
+
+<!-- Base template for patient -->
+ {% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Patient Base</title>
+    {%comment%} style for general start
+    <link rel="stylesheet" href="{% static 'general/navigation-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
+    <link rel="stylesheet" href="{% static 'general/minor-adjustment.css' %}">
+    <!--link rel="stylesheet" href="{% static 'general/form-control.css' %}"-->
+     style for general end
+    <link rel="stylesheet" href="{% static 'doctor/dashboard.css' %}">
+    <link rel="stylesheet" href="{% static 'mobile.css' %}">
+    <link rel="stylesheet" href="{% static 'tablet.css' %}"> {%endcomment%}
+    <link rel="stylesheet" href="{% static 'doctor/desktop.css' %}">
+    <!--link rel="stylesheet" href="{% static 'general/form-control.css' %}"-->
+    <link rel="stylesheet" href="{% static '.css' %}">
+    <link rel="stylesheet" href="{% static 'general/button-stuff.css' %}">
+    <link rel="stylesheet" href="{% static 'doctor/base.css' %}">
+    <link rel="stylesheet" href="{% static 'general/message_modal.css' %}">
+    
+
+</head>
+<body>
+
+    <div class="burger-btn-box">
+        <div class="BURG-BODY">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    </div>
+    <nav class="navi" id="navicon">
+
+        <ul class="nav-li">
+            <div class="port-crd">DOCTOR PORTAL</div>
+            <li class="li-i"><a href="{% url 'practitioner_dashboard' %}">Dashboard</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_patients' %}">Patients</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_analytics' %}">Analytics</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_setting' %}">Settings</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_appointment' %}">Appointments</a></li>
+            <li class="li-i"><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+
+        <ul class="nav-li-icon" style="display:none;">
+            <div class="port-crd">DOCTOR PORTAL</div>
+            <li class="li-i"><a href="{% url 'practitioner_dashboard' %}">Dashboard</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_patients' %}">Patients</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_analytics' %}">Analytics</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_setting' %}">Settings</a></li>
+            <li class="li-i"><a href="{% url 'practitioner_appointment' %}">Appointments</a></li>
+            <li class="li-i"><a href="{% url 'logout' %}">Logout</a></li>
+        </ul>
+
+    </nav>
+     <div class="msg-con" onclick="openModal()"> <p>chat</p> </div>
+     <div class="msg-modal-box">
+        <div class="close-chat" onclick="closeModal()"><p>X</p></div>
+        <div class="under-construction">
+            <p>Chat feature is under construction</p>
+            <p>We are working very hard to bring this feature to you soon!</p>
+            <div class="worker">
+                <img class="worker-icon" src="https://icon-library.com/images/under-construction-icon-png/under-construction-icon-png-27.jpg" alt="Worker">
+            </div>
+        </div>
+</div>
+    <!-- Content goes here -->
+    <div class="content">
+        {% block content %}
+        {% endblock %}
+</body>
+
+<script>
+
+    const msg_modal_box = document.querySelector('.msg-modal-box');
+
+    function closeModal() {
+        msg_modal_box.classList.remove('show');
+    }
+    function openModal() {
+        msg_modal_box.classList.add('show');
+    }
+</script>
+</html>
+

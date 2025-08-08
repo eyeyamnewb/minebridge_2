@@ -1,0 +1,96 @@
+{% extends "practitioner/base.html" %}
+{% block title %}Practitioner Appointment{% endblock %}
+{% load static %}
+
+{% comment %} This is the appointment page for the practitioner where they can view and manage appointments {% endcomment %}
+
+{% block content %}
+
+<link rel="stylesheet" href="{% static 'doctor/appointment-form.css' %}">
+<div class="Appt-con crb-F">
+    <div class="Appt-box">
+        <div class="appt-1 crb-F">
+            <div class="Appt-h crb-HT">
+                <header>pending appointment</header>
+            </div>
+            <div class="Appt-b crb-H">
+                <div class="Appt-li-b">
+                    {% comment %} start for loop {% endcomment %}
+                    {% for pending in pending_appointment %}
+                        <div class="Appt-li crb-F">
+                            <div class="appt-li-i">
+                                <p>name: {{ pending.who.who.full_name }}</p>
+                                <p>metting: {{ pending.appointment_meeting_type }}</p>
+                                <p>type: {{ pending.appointment_type }}</p>
+                                <p>date: {{ pending.appointment_date }}, time: {{ pending.appointment_time }}</p>
+                            </div>
+                        </div>
+                    {%empty%}
+                    <div class="appt-empty">
+                        emmpty appointment 
+                    </div>
+                    {% endfor %}
+                    {% comment %} end for loop {% endcomment %}
+                </div>
+            </div>
+        </div>
+        <div class="appt-2 crb-F">
+            <div class="Appt-h crb-HT">
+                <header>complete/cancelled appointment</header>
+            </div>
+            <div class="Appt-b crb-H">
+                <div class="Appt-li-b">
+                    {% comment %} start for loop {% endcomment %}
+                    {% for pending in complete_appointment %}
+                        <div class="Appt-li crb-F">
+                            <div class="appt-li-i">
+                                <p>name: {{ pending.who.who.full_name }}</p>
+                                <p>metting: {{ pending.appointment_meeting_type }}</p>
+                                <p>type: {{ pending.appointment_type }}</p>
+                                <p>date: {{ pending.appointment_date }}, time: {{ pending.appointment_time }}</p>
+                            </div>
+                        </div>
+                    {%empty%}
+                    <div class="appt-empty">
+                        empty appointment 
+                    </div>
+                    {% endfor %}
+                    {% comment %} end for loop {% endcomment %}
+                </div>
+            </div>
+        </div>
+    </div>
+{%comment%} modal form vvvvvvvv {%endcomment%}
+    <div class="btn appt-btn" onclick="openappt()"> 
+        <p >assign </p>
+        <p1 class="p1">appointment</p1>
+    </div>    
+    <div class="appt-mdl-box crb-F" id="appt-mdl-box">
+        <form action="{%url 'make_appointment'%} " method="post" class="apt-mdl-form">
+            {%csrf_token%}
+            {{appointment}}
+            <div class="appt-btns">
+                <button class="btn appt-udt-btn crb-F" type="submit" onclick="closeappt()">update</button>
+                <button class="btn appt-cls-btn crb-F" onclick="closeappt()">close</button>
+            </div>
+                
+        </form>
+       
+    </div>
+</div>
+
+
+</div>
+
+<script>
+    function openappt(){
+        document.getElementById('appt-mdl-box').classList.add('show');
+    }
+     function closeappt(){
+        document.getElementById('appt-mdl-box').classList.remove('show');
+    }
+</script>
+
+</script>
+
+{% endblock %}

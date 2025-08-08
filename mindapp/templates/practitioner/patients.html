@@ -1,0 +1,107 @@
+
+{% extends "practitioner/base.html" %}
+{% load static %}
+
+{%block content %}
+{%comment%} page for patient health stats,details and updates{%endcomment%}
+<link rel="stylesheet" href="{% static 'doctor/task-form.css' %}">
+<div class="Ppg-con crb-F">
+    <div class="Ppg-box crb-F">
+        {%comment%} headspace {%endcomment%}
+        <div class="Ppg-h crb-HT">
+            <header>PATIENT STATUS </header>
+        </div>
+        <div class="Ppg-b crb-H">
+            <table class="Ppg-tbl crb-F">
+                <thead>
+                    <tr>
+                        <th>id</th>
+                        <th>name</th>
+                        <th>age</th>
+                        <th>gender</th>
+                        <th>D.O.B</th>
+                        <th>mental health</th>
+                        <th>mental status</th>
+                        <th>priority</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for x in patient_mentals %}
+                    <tr>
+                        <td>{{x.who.who.who.id}}</td>
+                        <td>{{x.who.who.full_name}}</td>
+                        <td>{{x.who.who.age}}</td>
+                        <td>{{x.who.who.gender}}</td>
+                        <td>{{x.who.who.dob}}</td>
+                        <td>{{x.mental_health_category }}</td>
+                        <td>{{x.mental_health_status}}</td>
+                        <td>{{x.mental_health_priority}}</td>
+                    </tr>
+                    {%endfor%}    
+                </tbody>
+            </table>
+        </div>
+        
+    </div>
+
+<div class="pat-btn-stuff" style="position: fixed;">
+    <button class=" btn men-inf-btn" onclick="meninfo()"
+     style="font-size: 1.2em;
+    ">mental updates </button>
+    <button class="btn task-pat-btn" onclick="taskAssign()" style="
+    font-size: 1.2em;">task</button>
+</div>
+</div>
+
+<div class="mdl-pat-form crb-F" id="mdl-pat-form">
+    <div id="close-button" class="close-button" onclick="closeform()">
+        <button style="border-style: solid;border-color: gray;
+        font-weight: bold; border-radius: 100%;
+        font-size: 1.2vw; cursor: pointer;" onclick="closeform()">x</button>
+    </div>
+    <div class="men-inform" id="men-informa" style=" margin: 10%; font-size: 1vw;">
+        <form method="post" action="{%url 'mental_update' %}" class="men-inform-form">
+            {%csrf_token%}
+            {{mental_info_form}}
+            <button type="submit" class="btn men-btn crb-F">update</button>
+        </form>
+    </div>
+    <div class="task-pat-form" id="task-pat-form" style="margin: 5%; ">
+        <form method="post" action="{%url 'assign_task' %}" >
+            {%csrf_token%}
+           {{task_form}}
+           <button type="submit" class="btn tsk-btn crb-F">assign</button>
+        </form>
+    </div>
+</div>
+
+<script>
+    function meninfo() {
+    // Hide all modals first
+    document.getElementById('mdl-pat-form').classList.add('show');
+;
+    // Show the selected modal
+    document.getElementById('men-informa').classList.add('show');
+    document.getElementById('task-pat-form').classList.remove('show');
+}
+
+function taskAssign() {
+    // Hide all modals first
+    document.getElementById('mdl-pat-form').classList.add('show');
+;
+    // Show the selected modal
+    document.getElementById('men-informa').classList.remove('show');
+    document.getElementById('task-pat-form').classList.add('show');
+}
+
+function closeform() {
+    // Hide all modals first
+    document.getElementById('mdl-pat-form').classList.remove('show');
+    
+;
+    document.getElementById('men-informa').classList.remove('show');
+    document.getElementById('task-pat-form').classList.remove('show');
+}
+
+</script>
+{%endblock%}

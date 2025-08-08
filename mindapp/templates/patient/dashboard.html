@@ -1,0 +1,143 @@
+{% extends "patient/base.html" %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'general/form-control.css' %}">
+{% comment %}
+div for greeting user base on their name
+{% endcomment %}
+<div class="dash-box crb-F">
+    <div class="user-greet">
+        welcome {{ name }}
+    </div>
+    <div class="emo crb-F ">
+        {% comment %} here wiil be mood selector {% endcomment %}
+        <div class="emo-con">
+            <div class="emo-header crb-HT">
+                <header >
+                    How are you feeling today?
+                </header>
+            </div>
+            
+            <form method="post" class="emo-frm crb-H" action="{% url 'mood_selection' %}">
+                {% csrf_token %}
+                {{ mood_form }}
+                <div class="prv-mod">
+                    {% comment %} i'll just leave this blank incase previous mood need display {% endcomment %}
+                </div>
+                <button class="emo-sub btn crb-F" type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
+    {% comment %} dashboard area {% endcomment %}
+    <div class="dashP-i">
+        <div class="task-con">
+            <div class="task-item">
+                <div class="n-task tas crb-F">
+                    {% comment %} this one is for new task {% endcomment %}
+                    <header class="task-head spc1">
+                        <h2>New Task</h2>
+                    </header>
+                    <div class="tas-div crb-F">{% comment %} divider wkwkw {% endcomment %}</div>
+                    <div class="tas-i">
+                        {% comment %} new task that need to be complete {% endcomment %}
+                        {% for task in new_task %}
+                        <div class="tas-il crb-F">
+                            <form method="POST" action="{% url 'complete_task' %}" class="tasp-frm">
+                                {% csrf_token %}
+                                <h2>{{ task.task_title }}</h2>
+                                <div class="tasp-div"></div>
+                                <p>Description: {{ task.task_description }}</p>
+                                <p>Due Date: {{ task.task_due }}</p>
+                                <p>Status: {{ task.task_status }}</p>
+                                {% comment %} button for submit task to complete {% endcomment %}
+                                <input type="hidden" name="task_id" value="{{ task.id }}">
+                                <button class="btn dtbutton crb-F" type="submit"> complete </button>
+                            </form>
+                        </div>
+                        {% empty %}
+                        <div class="mt-tas">no new task</div>
+                        {% endfor %}
+                    </div>
+                </div>
+                <div class="p-task tas crb-F">
+                    {% comment %} this one is for pending task {% endcomment %}
+                    <div class="task-head spc1">
+                        <h2>Pending Task</h2>
+                    </div>
+                    <div class="tas-div crb-F"></div>
+                    <div class="tas-i">
+                        {% comment %} pending tasks list that need to be complete {% endcomment %}
+                        {% for task in pending_task %}
+                        <div class="tas-il crb-F">
+                            <form method="POST" action="{% url 'complete_task' %}" class="tasp-frm">
+                                {% csrf_token %}
+                                <h2>{{ task.task_title }}</h2>
+                                <div class="tasp-div"></div>
+                                <p>Description: {{ task.task_description }}</p>
+                                <p>Due Date: {{ task.task_due }}</p>
+                                <p>Status: {{ task.task_status }}</p>
+                                {% comment %} button for submit task to complete {% endcomment %}
+                                <input type="hidden" name="task_id" value="{{ task.id }}">
+                                <button class="btn dtbutton crb-F" type="submit"> complete </button>
+                            </form>
+                        </div>
+                        {% empty %}
+                        <div class="mt-tas">no pending task</div>
+                        {% endfor %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="cal-con">
+            <div class="cal-i crb-F">
+                <div class="cal-head spc1">
+                    <h2>Calendar</h2>
+                </div>
+                <div class="tas-div crb-F">{% comment %} divider wkwkw {% endcomment %}</div>
+                {% comment %} here create if statement for user google auth {% endcomment %}
+                <div class="bsc-cal crb-F">
+                    <div class="cal-nav crb-HT">
+                        <header>
+                            <a href="?{{ prev_month }}">Previous</a>
+                            <span>{{ month }}/{{ year }}</span>
+                            <a href="?{{ next_month }}">Next</a>
+                        </header>
+                    </div>  
+                    {{ calendar|safe }}  
+                </div>
+                <div id="appointment-modal" style="display: none;" >
+                    <h3>Appointments for <span id="modal-date"></span></h3>
+                    <ul id="modal-appointments"></ul>
+                    
+                </div>    
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const appointments = {{ appointments_json|safe }}; {%comment%} //Pass this from your view as JSON {%endcomment%}
+
+document.querySelectorAll('td[data-date]').forEach(td => {
+    td.addEventListener('mouseenter', function() {
+        const date = this.getAttribute('data-date');
+        if (appointments[date]) {
+            document.getElementById('modal-date').textContent = date;
+            const list = document.getElementById('modal-appointments');
+            list.innerHTML = '';
+            appointments[date].forEach(appt => {
+                const li = document.createElement('li');
+                li.textContent = appt;
+                list.appendChild(li);
+            });
+            document.getElementById('appointment-modal').style.display = 'block';
+            document.getElementById('appointment-modal').style.transition = 'ease 0.3s';
+        }
+    });
+    td.addEventListener('mouseleave', function() {
+        document.getElementById('appointment-modal').style.display = 'none';
+    }); 
+});
+</script>
+{% endblock %}

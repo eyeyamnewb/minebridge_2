@@ -1,0 +1,27 @@
+{% extends "practitioner/base.html" %}
+{% load static %}
+{%block content %}
+
+<link rel="stylesheet" href="{% static 'general/setting.css' %}">
+
+<div class="set-con crb-F">
+    <div class="pw-cng-con crb-F">
+        <div class="pw-cng-h crb-HT">
+            <header> 
+            change password
+            </header>
+        </div>
+        
+        <form method="POST" class=" pw-frm crb-H" action=" {% url 'change_password'%}">
+        {%csrf_token%}
+        {{ pass_change }}
+        <button class="set-btn btn crb-F" type="submit">submit</button>
+    </form>
+    </div>
+    
+</div>
+<head>  
+</head>
+
+{%endblock%}<!-- Content for task page -->
+<!-- Content for setting page -->   

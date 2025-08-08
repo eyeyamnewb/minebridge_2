@@ -1,0 +1,110 @@
+/* Task Form CSS */
+@import url(../variable.css);
+/* Mobile */
+@media (max-width: 768px) {
+    /* Add mobile-specific styles here */
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Add tablet-specific styles here */
+}
+
+/* Desktop */
+@media (min-width: 1025px) {
+
+    .btn{
+        border-style: none;
+        background-image: var(--head-gradient);
+        font-weight: bold;
+    }
+
+.pat-btn-stuff {
+    position: fixed;
+    bottom: 10vh;
+    right: 10px;
+    display: flex;
+    flex-direction: column;}
+
+.men-inf-btn{
+    border-radius: 100%;
+    width: 5vw;
+    height: 5vw;
+
+}
+
+.task-pat-btn{
+    border-radius: 100%;
+    width: 5vw;
+    height: 5vw;
+    margin-top: 10%;
+
+}
+
+.men-inf-btn:hover{
+    box-shadow: 0 0 4px 4px rgb(66, 66, 66);
+    transition: ease 0.1s;}
+    
+
+
+
+.task-pat-btn:hover{
+    box-shadow: 0 0 4px 4px rgb(66, 66, 66);
+    transition: ease 0.1s;
+  
+
+}
+
+.p-dtail-dsh {
+    width: 5vw;
+    height: 1.5vw;
+    margin-left: 20%;
+
+
+}
+
+.appt-btn{
+    display: flex;
+    flex-direction: column;
+    z-index: 2000;
+    transform: translateY(-45vh) translateX(70vw);
+    width: 5.5vw;
+    height: 5.5vw;
+    border-radius: 100%;
+}
+
+.appt-btn p{
+    transform: translateY(1vw) translateX(1.5vw);
+    width: 50%;
+}
+
+.p1{
+    transform: translateX(0.3vw) ;
+}
+.appt-btn:hover{
+    box-shadow: 0 0 4px 4px rgb(66, 66, 66);
+    transition: ease 0.1s;
+}
+
+.appt-udt-btn{
+    width: 40%;
+    height: 5vh;
+    transform: translateX(10%);
+    color: black;
+}
+
+.appt-cls-btn{
+    width: 40%;
+    height: 5vh;
+    transform: translateX(20%);
+    color: black;
+}  
+
+
+/*patient side button*/
+.emo-sub{
+    transform: translateY(2vh) translateX(55vw);
+    height: 5vh;
+    font-size: 1em;
+}
+}
