@@ -1,14 +1,19 @@
 :root {
         --font-size: 1rem;
         --primary-color: #b97cf1;
-        --head-gradient: linear-gradient(45deg,#bf95e5,#a548f7) ;
+        --head-gradient: linear-gradient(45deg,#d6b2f3,#bf8aec) ;
+        --headline-color: #B399e5;
+        --gradient-hover: linear-gradient(45deg,#e5d3f5,#c898f1) ;
         --secondary-color: #4b4d50;
         --tertiary-color: #d6d6d6;
-        --quaternary-color: #a0a0a0;
+        --quaternary-color: #ffffff;
         --quinary-color: #f0f0f0;
         --senary-color: #e0e0e0;
         --septenary-color: #d0d0d0;
         --octonary-color: #c0c0c0;
+        --message-sent-color: #c092eb;
+         --message-received-color: #c07cff;
+        
         /* in used up to tertiary */
 
 
@@ -25,4 +30,5 @@
         --table-font: 'Poppins', sans-serif;
 
         --stadard-card-padding: 10px;
+        
     }

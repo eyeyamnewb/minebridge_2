@@ -7,18 +7,25 @@
 {% block content %}
 
 <link rel="stylesheet" href="{% static 'doctor/appointment-form.css' %}">
-<div class="Appt-con crb-F">
+<div class="main-con crb-F">
     <div class="Appt-box">
-        <div class="appt-1 crb-F">
-            <div class="Appt-h crb-HT">
+        <div class="appt-1 b-shad-gen crb-F">
+            <div class="Appt-h bdr-style head-clr crb-HT">
                 <header>pending appointment</header>
+                <div class="btn appt-btn crb-F" onclick="make_appt()"> 
+                    <p style="margin-left: 15%;">assign </p>
+                </div>
+                <div class="btn appt-btn crb-F" onclick="update_appt()"> 
+                    <p >reschedule </p>
+                </div>
+
             </div>
             <div class="Appt-b crb-H">
                 <div class="Appt-li-b">
                     {% comment %} start for loop {% endcomment %}
                     {% for pending in pending_appointment %}
-                        <div class="Appt-li crb-F">
-                            <div class="appt-li-i">
+                        <div class="Appt-li b-shad-gen crb-F">
+                            <div class="appt-li-i ">
                                 <p>name: {{ pending.who.who.full_name }}</p>
                                 <p>metting: {{ pending.appointment_meeting_type }}</p>
                                 <p>type: {{ pending.appointment_type }}</p>
@@ -34,15 +41,15 @@
                 </div>
             </div>
         </div>
-        <div class="appt-2 crb-F">
-            <div class="Appt-h crb-HT">
+        <div class="appt-2 b-shad-gen crb-F">
+            <div class="Appt-h bdr-style head-clr crb-HT">
                 <header>complete/cancelled appointment</header>
             </div>
             <div class="Appt-b crb-H">
                 <div class="Appt-li-b">
                     {% comment %} start for loop {% endcomment %}
                     {% for pending in complete_appointment %}
-                        <div class="Appt-li crb-F">
+                        <div class="Appt-li b-shad-gen crb-F">
                             <div class="appt-li-i">
                                 <p>name: {{ pending.who.who.full_name }}</p>
                                 <p>metting: {{ pending.appointment_meeting_type }}</p>
@@ -61,17 +68,37 @@
         </div>
     </div>
 {%comment%} modal form vvvvvvvv {%endcomment%}
-    <div class="btn appt-btn" onclick="openappt()"> 
-        <p >assign </p>
-        <p1 class="p1">appointment</p1>
-    </div>    
-    <div class="appt-mdl-box crb-F" id="appt-mdl-box">
-        <form action="{%url 'make_appointment'%} " method="post" class="apt-mdl-form">
+    
+
+ 
+    
+    <div class="appt-mdl-box crb-F" id="appt-mdl-box" >
+        <form action="{%url 'mindapp:make_appointment'%} " style="display: none;" method="post"
+         class="apt-mdl-form" id="make_appointment_form" >
             {%csrf_token%}
             {{appointment}}
             <div class="appt-btns">
                 <button class="btn appt-udt-btn crb-F" type="submit" onclick="closeappt()">update</button>
-                <button class="btn appt-cls-btn crb-F" onclick="closeappt()">close</button>
+                <button class="btn appt-cls-btn crb-F" type="button" onclick="closeappt()">close</button>
+            </div>
+                
+        </form>
+
+        <form action="{%url 'mindapp:reschedule_appointment'%} " method="post" class="apt-mdl-form"
+        id="update_appointment_form">
+            {%csrf_token%}
+            <!-- create a loop here>
+             <label for="name"> name:</label>
+             <select>
+                <option value="#appoint ment id go here 
+                ">bob</option>
+             </select>
+             < create if else statement here >
+             <time aria-placeholder="12 54"></time -->
+                {{ reschedule_appointment.as_p }}
+            <div class="appt-btns">
+                <button class="btn appt-udt-btn crb-F" type="submit" onclick="closeappt()">update</button>
+                <button class="btn appt-cls-btn crb-F" type="button" onclick="closeappt()">close</button>
             </div>
                 
         </form>
@@ -83,10 +110,17 @@
 </div>
 
 <script>
-    function openappt(){
+    function make_appt(){
         document.getElementById('appt-mdl-box').classList.add('show');
+        document.getElementById('make_appointment_form').style.display = 'block';
+        document.getElementById('update_appointment_form').style.display = 'none';
     }
-     function closeappt(){
+    function update_appt(){
+        document.getElementById('appt-mdl-box').classList.add('show');
+        document.getElementById('make_appointment_form').style.display = 'none';
+        document.getElementById('update_appointment_form').style.display = 'block';
+    }
+    function closeappt(){
         document.getElementById('appt-mdl-box').classList.remove('show');
     }
 </script>

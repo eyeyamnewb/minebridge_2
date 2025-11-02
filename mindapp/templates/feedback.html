@@ -1,0 +1,35 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>practioner  Base</title>
+
+        <link rel="stylesheet" href="{% static 'general/minor-adjustment.css' %}">
+        <link rel="stylesheet" href="{% static 'feedback.css' %}">
+        <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
+        <link rel="stylesheet" href="{% static 'general/button-stuff.css' %}">
+    </head>
+    
+    <body>
+        <div class="fdback-frm-main crb-F b-shad-gen">
+            <div class="fdback-header crb-HT">
+                <p class="fdback-title">
+                    feedback
+                </p>
+            </div>
+            <div class="fdback-frm">
+                <form method="POST" action="{% url 'mindapp:feedback' %}" autocomplete="off">
+                    {%csrf_token%}
+                  
+                    <p><input type="text" id="subject" name="subject" placeholder="suggetion/improvment..."></p>
+                    <p><textarea type="text" id="content" name="content" placeholder="type here...."></textarea></p>
+                    <button class="btn fd-btn crb-F" type="submit">submit</button>
+                </form>
+            </div>
+        </div>
+        
+        
+    </body>
+</html>

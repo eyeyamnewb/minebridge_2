@@ -4,15 +4,18 @@
 
 <link rel="stylesheet" href="{% static 'general/setting.css' %}">
 
-<div class="set-con crb-F">
-    <div class="pw-cng-con crb-F">
-        <div class="pw-cng-h crb-HT">
+<div class="main-con crb-F">
+    <div class="title-card">
+        Settings
+    </div>
+    <div class="pw-cng-con b-shad-gen crb-F">
+        <div class="pw-cng-h head-clr crb-HT">
             <header> 
             change password
             </header>
         </div>
         
-        <form method="POST" class=" pw-frm crb-H" action=" {% url 'change_password'%}">
+        <form method="POST" class=" pw-frm crb-H" action=" {% url 'mindapp:change_password'%}">
         {%csrf_token%}
         {{ pass_change }}
         <button class="set-btn btn crb-F" type="submit">submit</button>

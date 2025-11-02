@@ -1,10 +1,14 @@
 /* Minor adjustments for all devices */
-
+@import url('../variable.css');
 /* Default styles (applies to all devices) */
 body {
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+     
+    background-color: var(--tertiary-color);
+    font-family: Arial, Helvetica, sans-serif;
+            
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -17,9 +21,7 @@ h1, h2, h3, h4, h5, h6 {
     }
 
 /* Media query for tablets */
-@media (max-width: 768px) {
- 
-}
+@media (max-width: 414px) {}
 
 /* Media query for mobile devices */
 @media (max-width: 480px) {

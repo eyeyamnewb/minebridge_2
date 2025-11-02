@@ -38,9 +38,6 @@
                 font-family: Arial, Helvetica, sans-serif;
             }
 
-            .head-clr {
-                background-color: var(--primary-color);
-            }
             .content {
                 padding: 0.1%;
                 display: block;
@@ -53,92 +50,12 @@
                 margin-top: 5%;
             } 
 
-            /*############## Card radius ###################*/
-            .crb-F {
-                border-top-left-radius: 1vw;
-                border-top-right-radius: 1vw;
-                border-bottom-left-radius: 1vw;
-                border-bottom-right-radius: 1vw;
-            }
-            .crb-H {
-                border-top-left-radius: 0em;
-                border-top-right-radius: 0em;
-                border-bottom-left-radius: 1vw;
-                border-bottom-right-radius: 1vw;
-            
-            }
-            .crb-HT {
-            border-top-left-radius: 1vw;
-                border-top-right-radius: 1vw;
-                border-bottom-left-radius: 0em;
-                border-bottom-right-radius: 0em;
-            
-            }
             /*############## spacer ###################*/
 
             .spc1 {
                 margin-left: 2vw;
             }
-
-            /*############ Navigation bar #################*/
-            /*#############################################*/
-            .navi {
-                display:flex;
-                position: fixed;
-                background-color: var(--secondary-color);
-                color: white;
-                width: 15vw;
-                padding: 0.5vw;
-                z-index: 1000;
-                height: 100vh;
-                margin-top: 1vh;    
-                margin-left: -1vw;
-            }
-            .port-crd {
-                font-size:var(--comical-font-size) ;
-                font-weight: 900;
-                color: white;
-                margin-bottom: 30%;
-            }
-            .nav-li {
-                display: flex;
-                flex-direction: column;
-                color: var(--secondary-color);
-            }
-
-            .li-i {
-                font-size: var(--header-font-size);
-            }
-            .nav-li li a {
-
-                color: white;
-                text-decoration: none;
-            }
-
-            /*this one is neighbor*/
-            .msg-con{
-                display: block;
-                position: fixed;
-                z-index:1001;
-                padding: 1px;
-                width: 5vw;
-                height: 5vw;
-                background-image: var(--head-gradient);
-                border-color: white;
-                border-style: solid;
-                margin-top: 80vh ;
-                margin-left: 4vw;
-                border-radius: 20%;
-                font-weight: bold;
-                font-size: 2em;
-            }
-
-            .msg-con p{
-                margin-top: 30%;
-                margin-left: 15%;
-            }
-
-
+           
             /*######### patient dashboard content ##########*/
             /*#############################################*/
             
@@ -150,192 +67,21 @@
                 margin-top: 2%;
                 margin-bottom: 2%;
             }
-            .user-greet {
-                display: block;
-                margin-left: 2vw;
-                margin-top: 2vh;
-                margin-bottom: 2%;
-                font-size: var(--bigfont-size);
-                color: var(--secondary-color);
-                text-decoration: underline;
-            }
             
             /*---------emotion mood box thingy -----*/
             
-            .emo{
-                display: block;
-                background-color: var(--quinary-color);
-                padding: 1px;
-                width: 96%;
-                margin-left: 2%;
-                margin-bottom: 2%;
-                box-shadow: 0 0 4px 4px gray;
-            }
-            .emo-header {
-                background-image: var(--head-gradient);
-                font-size: 2vw;
-                font-weight: bold;
-                padding: 1px;
-                box-shadow: 0 0 2px 2px gray;
-            }
-
-            .emo-header header{
-                margin: 1%
-            }
-
-            .emo-frm{
-                /*background-color: green;*/
-                height: 20vh;
-                margin-top: 2%;
-                margin-left:5%; 
-                width: 85%;
-                font-size: 1.5vw;
-                font-weight: bold;
-                padding: 1px;
-            }
             
-            
-            /*---------------- main dashboard item ------------------*/
-            .dashP-i{display: flex;
-            /*background-color: red;*/
-            width:96% ;
-            margin-left: 2%;
-            padding: 1px;
-            }
-
-            /*dashbaord task item container*/
-            .task-con {
-                display: block;
-                padding: 10px;
-                width: 80%;
-                height: 90%;
-    ;
-            }
-
-            .task-item {
-                display: flex; /* this is like the box thingy */
-                /*background-color: gray;*/
-            }
-
-            .tas {
-                display: block;
-                width: 50%;
-                height: 70vh;
-                background-color: var(--quinary-color);
-                box-shadow: 0 0 4px 4px gray;
-            }
-
-            .tas-i{
-                overflow: auto;
-                height: 85%;
-                /*background-color: yellow;*/
-            }
-            .tas-il {
-                display: block;
-                background-color: var(--senary-color);
-                border-color: var(--primary-color);
-                border-style: solid;
-                border-width: 4px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-                width: 90%; 
-                margin-left: 5%;
-                margin-top:5%;
-                padding: 1px;
-                transition: ease 0.3s;
-            }
-
-            .tas-il:hover {
-                display: block;
-                background-color: var(--quinary-color);
-                border-color: var(--primary-color);
-                border-style: solid;
-                border-width: 4px;
-                box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
-                width: 90%; 
-                margin-left: 5%;
-                margin-top:5%;
-                padding: 1px;
-            }
-
-            .tasp-frm{
-                /*background-color: red;*/
-                margin-left: 5%;
-                margin-bottom: 5%;
-                padding: 1px;
-            }
-
-            .p-task {
-                margin-left: 1vw;
-            }
-
-            .tas-div {
-            display: block;
-            background-color: var(--secondary-color);
-            width: 80%;
-            height: 5px;
-            margin-top: -3%;
-            margin-left: 10%;
-            }
-
-            .dtbutton{
-                margin-left: 70%;   
-                height: 2vw;
-                
-            }
-            /* for empty task*/
-            .mt-tas{
-                margin-left: 35%;
-                margin-top: 50%;
-            }
-
-            /*-------------callendar stuff-------------------*/
-            /*calendar container*/
-            .cal-con{
-                display: block;
-                width: 31.5vw;
-                padding:10px ; 
-            }
-            
-            /*calendar item */
-            .cal-i {
-                width: 98%;
-                height: 100%;
-                background-color: var(--quinary-color);
-                box-shadow: 0 0 4px 4px gray ;
-                margin-top: -0%;
-                padding: 1px;
-            }
-            
-            /*calendar header*/
-            .cal-head{
-                margin-top: -3%;
-                margin-left: 10%;
-                margin-bottom: 6%;
-                
-            }
-
-            .g-cal{
-                display: block;
-                height: 80%;
-                margin-left: 0%;
-                margin-top: 10%;
-
-            }
 
             .bsc-cal {
                 /*background-color: green;*/
-                box-shadow :0 0 4px 4px lightgray;
                 font-size: 1.5rem;
                 width: 90%;
                 margin-top: 10%;
                 margin-left: 5%;
-                padding: 1px;
+                /*padding: 1px;*/
                 border-style: solid;
                 border-color: gray;
                 transition: ease-in-out 0.3s;
-            }
-            .bsc-cal:hover {
-                box-shadow :0 4px 4px 4px gray;
             }
 
             .bsc-cal td, .bsc-cal th {
@@ -344,9 +90,7 @@
             }
 
             .cal-nav {
-                background-image: var(--head-gradient);       
-                padding: 4px;
-                box-shadow: 0 0 4px 4px gray ;
+                /*padding: 4px;*/
                 font-weight: bold;
             }
             .cal-nav header{
@@ -382,7 +126,7 @@
                 
             }
             .dsh-appt{
-                background-image: var(--head-gradient);
+                background-color: var(--primary-color);
             }
 
 
@@ -391,7 +135,7 @@
         .apptm-con{
             display: flex;
             flex-direction: column ;
-            padding: 1px;
+            /*padding: 1px;*/
             background-color: var(--senary-color) ;
             margin-top : 3vh;
             margin-left: 1vw;
@@ -399,25 +143,30 @@
 
         .appt-con-line{
             /*background-color: red;*/
-            padding: 1px;
+            /*padding: 1px;*/
             width: 90%;
             margin-left: 5%;
             margin-bottom: 5%;
         }
         .appt-con{
             width: 100%;
-            margin-top: 5%;
-            box-shadow: 0 0 4px 4px gray;
-            padding: 1px;
+            /*padding: 1px;*/
             background-color:var(--quinary-color);
 
         }
+
+        .appt-con1{
+            width: 100%;
+            margin-top: 5%;
+            /*padding: 1px;*/
+            background-color:var(--quinary-color);
+
+        }
+        
         .appt-h{
             display: flex;
-            background-image: var(--head-gradient);
             font-size: var(--header-font-size);
             font-weight: bold;
-            box-shadow: 0 0 4px 4px gray;
         }
 
         .appt-h header{
@@ -432,27 +181,25 @@
 
         .appt-scrl{
     /*background-color: rebeccapurple;*/
-            padding: 1px;
+            /*padding: 1px;*/
             width: 80%;
             height: 40vh;
-            margin-left: 10%
-            ;overflow-y: auto;
+            margin-left: 10%;
+            overflow-y: auto;
         }
 
         .appt-li{
-            background-color: lightgray;
+            background-color: var(--quinary-color);
             width: 80%;
             margin-left: 10%;
             margin-top: 5%;
             margin-bottom: 5%;
-            box-shadow: 0 0 4px 4px lightgray;
             padding: 1px;
             transition: 0.3s;
         }
 
         .appt-li:hover{
-            background-color: var(--quinary-color);
-            box-shadow: 0 10px 20px 1px black;
+            background-color: var(--quaternary-color);
         }
         .appt-li-i{
             margin: 2%;
@@ -468,49 +215,12 @@
             margin-bottom: 1%;
             
         }
-        /*################### setting content ####################*/
-        /*########################################################*/
-
-        .set-con{
-            background-color: var(--senary-color);
-            padding: 1px;
-            margin-top:3vh ;
-            margin-left: 1vw;
-        }
-        .pw-cng-con{
-            width: 50%;
-            margin:5%;
-            margin-left: 20%;
-            background-color: var(--quinary-color);
-            box-shadow: 0 0 4px 4px gray;
-            padding: 1px;
-        }
-        .pw-cng-h{
-            background-image: var(--head-gradient);
-            margin-left: 0;
-            box-shadow: 0 0 4px 4px gray;
-        }
-        .pw-cng-h header{
-            
-            margin-left: 2%;
-            font-size: var(--header-font-size);
-            font-weight: bold;
-        }
-        
-        .pw-frm{
-            /*background-color: red;*/
-            width: 90%;
-            margin:5%;
-        }
-
-
         /*##################### task content #####################*/
         /*########################################################*/
 
         .TSK-con{                       /* whole container  */
             display: block;
             background-color: var(--senary-color);
-            padding: 1px;
             height: 20%;
             margin-top: 5vh ;
             margin-left: 1vw;
@@ -533,16 +243,13 @@
             margin-bottom: 2%;
             width: 42%;
             background-color: var(--quinary-color);
-            box-shadow: 0 0 4px 4px gray;
-            padding: 1px;
+            /*padding: 1px;*/
         }
 
         .TSK-h{
             display: block;
-            background-image:var(--head-gradient);
             font-size: var(--header-font-size) ;
             font-weight: bold;
-            box-shadow: 0 0 4px 4px gray ;
         }
         .TSK-h header{
             margin-left: 5%;
@@ -555,15 +262,13 @@
             width: 99.5%;
             height: 80vh;
             margin-top: 2%;
-            padding: 1px;
             overflow-y: auto;
         
         }
 
         .TSK-li{
             display: block;
-            background-color:var(--senary-color);
-            box-shadow: 0 4px 8px gray;
+            background-color:var(--quinary-color);
             width: 90%;
             margin-left: 5%;
             margin-top: 2%;
@@ -573,8 +278,7 @@
         }
         
         .TSK-li:hover{
-            background-color: var(--quinary-color);
-            box-shadow: 0 4px 8px black;
+            background-color: var(--quaternary-color);
         }
 
         .TSK-lif{
@@ -626,7 +330,6 @@
         padding: 20px;
         z-index: 1000;
         border-radius: 12px;
-        box-shadow: 0 4px 24px rgba(0,0,0,0.2);
         min-width: 300px;
         max-width: 90vw;
     }

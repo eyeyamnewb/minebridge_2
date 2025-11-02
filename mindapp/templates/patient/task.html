@@ -1,20 +1,23 @@
 {% extends "patient/base.html" %}
 
 {%block content %}
-<div class="TSK-con crb-F">
+<div class="main-con crb-F">
+    <div class="title-card">
+        Tasks
+    </div>
     <div class="TSK-i">
     {%comment%} assign task go here {%endcomment%}
-        <div class="TSK-inc crb-F">
-            <div class="TSK-h crb-HT">
+        <div class="TSK-inc b-shad-gen crb-F">
+            <div class="TSK-h head-clr crb-HT">
                 <header>Assigned task</header>
             </div>
             <div class="TSK-l crb-H">
                 {% for task in assign_task %}
-                    <div class="TSK-li crb-F">
-                        <form method="POST" action="{%url 'complete_task' %}" class="TSK-lif">
+                    <div class="TSK-li bdr-active crb-F">
+                        <form method="POST" action="{%url 'mindapp:complete_task' %}" class="TSK-lif">
                             {% csrf_token %}
                             <header>{{ task.task_title }}</header>
-                            <div class="tasp-div crb-F"></div>
+                            <div class="tasp-div mn-font1 crb-F"></div>
                             <p>Description: {{ task.task_description }}</p>
                             <p>Due: {{ task.task_due }}</p>
                             <p>Status: {{ task.task_status }}</p>
@@ -29,15 +32,15 @@
                 
             </div>
         </div>
-    {%comment%} cpmlete task stuff go here {%endcomment%}
-        <div class="TSK-inc crb-F">
-            <div class="TSK-h crb-HT">
+    {%comment%} complete task stuff go here {%endcomment%}
+        <div class="TSK-inc b-shad-gen crb-F">
+            <div class="TSK-h head-clr crb-HT">
                 <header>completed task</header>
             </div>
             <div class="TSK-l crb-H">
                 {% for task in complete_task %}
-                    <div class="TSK-li crb-F">
-                        <form method="POST" action="{%url 'complete_task' %}" class="TSK-lif">
+                    <div class="TSK-li bdr-active mn-font1 crb-F">
+                        <form method="POST" action="{%url 'mindapp:complete_task' %}" class="TSK-lif">
                             {% csrf_token %}
                             <header>{{ task.task_title }}</header>
                             <div class="tasp-div crb-F"></div>

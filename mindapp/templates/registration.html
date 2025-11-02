@@ -8,20 +8,22 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'patient/desktop.css' %}">
     <link rel="stylesheet" href="{% static 'general/register.css' %}">
+    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
     <link rel="stylesheet" href="{% static 'mobile.css' %}">
     <link rel="stylesheet" href="{% static 'tablet.css' %}">
 </head>
 <body>
 
-    <div class="reg-box crb-F">
-        <div class="reg-head crb-HT">
+    <div class="reg-box b-shad-gen crb-F">
+        <div class="reg-head head-clr  crb-HT">
             <header>Registration</header>
         </div>
         <div class="reg-body">
             <form method="post">
                 {% csrf_token %}
                 {{ form.as_p }}
-                <button class = "reg-btn" type="submit">Register</button>
+                <button class = "reg-btn crb-F" type="submit">Register</button>
+                <a href=" {% url 'mindapp:login' %} " ><button class = "reg-btn reg-btn-log crb-F" type="button"> already have an account? login</button></a>
             </form>
         </div>
     </div>

@@ -95,9 +95,9 @@ Responsive design
 }
 */
 
+@media (max-width:414px) {
 
-
-Input fields
+    Input fields
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -187,4 +187,103 @@ textarea {
      
 
 }
+
+}
+
+/* #################################### desktop ######################*/
+@media (min-width:786px) {
+
+    Input fields
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"],
+input[type="time"],
+#id_email,
+#id_first_name,
+#id_last_name,
+#id_contact,
+select,
+textarea {
+    width: 100%;
+    padding: 1vw;
+    margin-bottom: 0%;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    font-size: 1em;
+    box-sizing: border-box;
+}
+
+
+
+.mod-frm{
+    border-radius: 100vw;
+}
+
+
+
+/*######## modal form shape ###############*/
+/*##########################################################*/
+
+
+/*------------ task assing form in prac dashboard-------*/
+ .dsh-tas-frm{
+            position: fixed;
+            opacity: 0%;
+            background-color: var(--senary-color);
+            transform: translatex(-200%);
+            transition: ease-in-out 0.3s;
+            width: 30vw;
+ }
+
+.ass-tas-frm{
+    margin: 5%;
+}
+
+ .dsh-tas-frm.show{
+            display: block;
+            opacity: 100%;
+            position: fixed;
+            z-index: 1001;
+            width: 30vw ;
+            background-color: var(--senary-color);
+            box-shadow: 0 0 10px 5px gray;
+            padding: 1px;
+            transform: translatex(-0%);
+            transition: ease-in-out 0.6s;
+        }
+
+.dsh-ass-btn{
+    height: 5vh;
+    width: 90vw;
+}
+
+/*------------ patient details modal in prac dashboard-------*/
+
+.pat-dtl-mdl-box{
+    opacity: 0%;
+    background-color: var(--senary-color);
+    box-shadow: 0 0 4px 4px gray;
+    position: fixed;
+    transform: translateX(20vw) translatey(20vh);
+    transition: ease-in-out 0.3s;
+    pointer-events: none;
+
+}
+
+.pat-dtl-mdl-box.show{
+    opacity: 100%;
+    background-color: var(--senary-color);
+    box-shadow: 0 0 4px 4px gray;
+    position: fixed;
+    transform: translateX(20vw);
+    transition: ease-in-out 0.3s;
+    padding: 1px;
+     pointer-events: auto;
+     
+
+}
+
+}
+
 

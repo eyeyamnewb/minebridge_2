@@ -128,3 +128,10 @@ mental_status_choices = [
     ('critical', 'Critical'),
 ]
 
+subscription_tier =  [
+    ('freemium', 'freemium'),
+    ('basic','basic'),
+    ('advance','advance'),
+    ('professional','professional'),
+
+]

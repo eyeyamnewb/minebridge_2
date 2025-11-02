@@ -21,9 +21,7 @@ textarea {
     box-sizing: border-box;
 }
 
-form {
-    font-weight: bold;
-}
+
 
 /*################# containers ############################*/
 
@@ -33,16 +31,13 @@ form {
     background-color: var(--quinary-color);
     width:50vw ;
     height: auto;
-    padding: 1px;
     transform: translateX(25vw) translateY(25vh);
 }
 
 .login-head{
     background-image: var(--head-gradient);
-    box-shadow: 0 0 4px 4px gray;
     font-size: 2vw;
     font-weight: bold;
-    padding: 1px;
 }
 
 .login-head header{
@@ -51,22 +46,15 @@ margin-left: 40%;
 }
 
 .login-body{
-    margin: 10%;
     font-weight: bold;
     width: 80%;
+    padding: 20px;
+ margin-left: 5%;
 }
 
 .login-btn button{
     margin-left: 5%;
 }
     /*################# button fields ############################*/
-
-    .login-btnM {
-        border-style: none;
-        width: 40%;
-        height: 5vh;
-        background-image: var(--head-gradient);
-    }
-
         
     }

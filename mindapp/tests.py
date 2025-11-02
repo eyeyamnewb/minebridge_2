@@ -1,3 +1,5 @@
 from django.test import TestCase
+from decouple import config
 
-# Create your tests here.
+bob = config("DEBUG")
+print(bob)

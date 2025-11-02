@@ -1,0 +1,21 @@
+@media (max-width: 414px) {
+    .content{
+    display: block;
+    background-color: green;
+    width: 100vw;
+    height: 790px;
+    overflow: auto;
+    transform: translateX(-17%) translateY(-9%);
+}}
+
+@media (max-width: 786px) {
+    .content{
+    display: none;
+    background-color: green;
+    width: 100vw;
+    height: 790px;
+    overflow: auto;
+    transform: translateX(-17%) translateY(-9%);
+}
+
+}

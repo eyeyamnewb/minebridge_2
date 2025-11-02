@@ -1,55 +1,48 @@
 /* Task Form CSS */
 @import url(../variable.css);
 /* Mobile */
-@media (max-width: 768px) {
-    /* Add mobile-specific styles here */
-}
+@media (max-width: 414px) and (max-height: 812px) {
 
-/* Tablet */
-@media (min-width: 769px) and (max-width: 1024px) {
-    /* Add tablet-specific styles here */
-}
-
-/* Desktop */
-@media (min-width: 1025px) {
-
-    .btn{
-        border-style: none;
+.btn{
+        border: 2px solid rgb(156, 139, 160);
         background-image: var(--head-gradient);
         font-weight: bold;
+        border-style: none;
     }
 
-.pat-btn-stuff {
-    position: fixed;
-    bottom: 10vh;
-    right: 10px;
-    display: flex;
-    flex-direction: column;}
+    .btn:hover{
+        box-shadow: 0 0 4px 2px rgba(134, 38, 163, 0.452);
+        transition: ease 0.1s;
+        background-image: var(--gradient-hover);
+    }
 
-.men-inf-btn{
-    border-radius: 100%;
-    width: 5vw;
-    height: 5vw;
 
+.add-contact-btn-btn{
+    border-style: none;
+    width: 80px;
+    transform: translateX(100px);
+    right: 1px;
+    float: right;
+}    
+.inf-btn{
+    height: 5%;
+    transform: translateX(35vw);
+    margin-left: 2%;
+    margin-top: 0.5em;
+    width: 10%;   
+    font-size: 0.4em;
+    border-color: rgb(169, 67, 201);
 }
 
-.task-pat-btn{
-    border-radius: 100%;
-    width: 5vw;
-    height: 5vw;
-    margin-top: 10%;
 
-}
-
-.men-inf-btn:hover{
-    box-shadow: 0 0 4px 4px rgb(66, 66, 66);
+.inf-btn:hover{
     transition: ease 0.1s;}
     
 
 
 
 .task-pat-btn:hover{
-    box-shadow: 0 0 4px 4px rgb(66, 66, 66);
+    box-shadow: 0 0 2px 2px rgb(66, 66, 66);
     transition: ease 0.1s;
   
 
@@ -64,25 +57,33 @@
 }
 
 .appt-btn{
-    display: flex;
-    flex-direction: column;
+    display: flex;  
     z-index: 2000;
-    transform: translateY(-45vh) translateX(70vw);
+    transform:  translateX(400%);
     width: 5.5vw;
-    height: 5.5vw;
-    border-radius: 100%;
+    height: 2vw;
+    /*border-radius: 30%;*/
+    margin-top: 1%;
+    margin-left: 2% ;
+    border-color: rgb(169, 67, 201);
+    padding: 1px;
+    align-items: center;
+    align-content: center;
 }
 
 .appt-btn p{
-    transform: translateY(1vw) translateX(1.5vw);
-    width: 50%;
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+    font-size: 0.5em;
 }
 
 .p1{
     transform: translateX(0.3vw) ;
 }
+
 .appt-btn:hover{
-    box-shadow: 0 0 4px 4px rgb(66, 66, 66);
+   /* box-shadow: 0 0 4px 4px rgb(66, 66, 66);*/
     transition: ease 0.1s;
 }
 
@@ -107,4 +108,170 @@
     height: 5vh;
     font-size: 1em;
 }
+
+.fd-btn{
+    width: 300px;
+    height: 40px ;
+    margin-bottom: 10px;
+    margin-left: 5px;
+}
+
+
+
+/* ######## login button ##########*/
+.login-btn{
+    padding: 10px;
+}
+
+.login-btnM {
+        width: 40%;
+        height: 5vh;
+    }
+
+.login-btnM a{
+        text-decoration: none;
+        color: black;
+    }
+    /* Add mobile-specific styles here */
+
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Add tablet-specific styles here */
+}
+
+/*######################### Desktop######################### */
+@media (min-width: 1025px) {
+
+    .btn{
+        border: 2px solid rgb(156, 139, 160);
+        background-image: var(--head-gradient);
+        font-weight: bold;
+        border-style: none;
+    }
+
+    .btn:hover{
+        box-shadow: 0 0 4px 2px rgba(134, 38, 163, 0.452);
+        transition: ease 0.1s;
+        background-image: var(--gradient-hover);
+    }
+
+
+.add-contact-btn-btn{
+    border-style: none;
+    width: 80px;
+    transform: translateX(100px);
+    right: 1px;
+    float: right;
+}    
+.inf-btn{
+    height: 5%;
+    transform: translateX(35vw);
+    margin-left: 2%;
+    margin-top: 0.5em;
+    width: 10%;   
+    font-size: 0.4em;
+    border-color: rgb(169, 67, 201);
+}
+
+
+.inf-btn:hover{
+    transition: ease 0.1s;}
+    
+
+
+
+.task-pat-btn:hover{
+    box-shadow: 0 0 2px 2px rgb(66, 66, 66);
+    transition: ease 0.1s;
+  
+
+}
+
+.p-dtail-dsh {
+    width: 5vw;
+    height: 1.5vw;
+    margin-left: 20%;
+
+
+}
+
+.appt-btn{
+    display: flex;  
+    z-index: 2000;
+    transform:  translateX(400%);
+    width: 5.5vw;
+    height: 2vw;
+    /*border-radius: 30%;*/
+    margin-top: 1%;
+    margin-left: 2% ;
+    border-color: rgb(169, 67, 201);
+    padding: 1px;
+    align-items: center;
+    align-content: center;
+}
+
+.appt-btn p{
+    margin-top: 5%;
+    margin-bottom: 5%;
+    width: 70%;
+    font-size: 0.5em;
+}
+
+.p1{
+    transform: translateX(0.3vw) ;
+}
+
+.appt-btn:hover{
+   /* box-shadow: 0 0 4px 4px rgb(66, 66, 66);*/
+    transition: ease 0.1s;
+}
+
+.appt-udt-btn{
+    width: 40%;
+    height: 5vh;
+    transform: translateX(10%);
+    color: black;
+}
+
+.appt-cls-btn{
+    width: 40%;
+    height: 5vh;
+    transform: translateX(20%);
+    color: black;
+}  
+
+
+/*patient side button*/
+.emo-sub{
+    transform: translateY(2vh) translateX(55vw);
+    height: 5vh;
+    font-size: 1em;
+}
+
+.fd-btn{
+    width: 300px;
+    height: 40px ;
+    margin-bottom: 10px;
+    margin-left: 100px;
+}
+
+
+
+/* ######## login button ##########*/
+.login-btn{
+    padding: 10px;
+}
+
+.login-btnM {
+        width: 40%;
+        height: 5vh;
+    }
+
+.login-btnM a{
+        text-decoration: none;
+        color: black;
+    }
+
 }

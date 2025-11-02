@@ -24,17 +24,14 @@ textarea {
 
     .reg-box{
     background-color: var(--quinary-color);
-    box-shadow: 0 0 4px 4px gray;
-    transform: translateX(15vw) translateY(20vh);
-    padding: 1px;
-    width: 70%;
+    transform: translateX(25vw) translateY(20vh);
+    width: 50%;
 }
 
 .reg-head{
-    background-image: var(--head-gradient);
+    background-image: var(--head-color);
     font-size: 2vw;
     font-weight: bold;
-    box-shadow: 0 0 4px 4px gray;
     padding: 1px;
 }
 .reg-head header{
@@ -43,13 +40,22 @@ textarea {
 }
 .reg-body{
     font-weight: bold;
-    margin: 5%;
+
+    padding: 50px;
 }
 
 /*################# button fields ############################*/
 
 .reg-btn {
     border-style: none;
+    width: 40%;
+    height: 5vh;
+    background-image: var(--head-gradient);
+}
+
+.reg-btn-log {
+    border-style: none;
+    margin-left: 10%;
     width: 40%;
     height: 5vh;
     background-image: var(--head-gradient);

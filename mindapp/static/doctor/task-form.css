@@ -43,11 +43,12 @@
         background-color: var(--senary-color);
         position: fixed;
         z-index: 1000;
-        height: 60vh;
-        width: 30vw;
+        height:auto;
+        width:600px ;
         box-shadow: 3px 3px 4px 4px gray;
         transform: translateY(-60vh) translateX(20vw);
         transition: ease 0.3s;
+        padding: 10px;
     }
 
     .mdl-pat-form.show{
@@ -55,20 +56,21 @@
         background-color: var(--senary-color);
         position: fixed;
         z-index: 1000;
-        height: 60vh;
-        width: 30vw;
         box-shadow: 3px 3px 4px 4px gray;
-        transform: translateY(-60vh) translateX(20vw);
+        transform: translateY(-90vh) translateX(20vw);
         transition: ease 0.3s;
     }
 
     .men-inform {
         display: none;
-        transform: translateY(-0vh);
+        transform: translateY(-0vh) translateX(0);
+        height: auto;
     }
 
     .men-inform  select{
-        padding: 1.5vh;
+        height: 50px;
+        width:100%;
+        
     }
 
      .men-inform.show {
@@ -80,6 +82,9 @@
         transform: translateY(-0vh);
     }
 
+    .task-pat-form select{
+        height: 50px;
+    }
     .task-pat-form.show{
         display: block;
         
@@ -108,10 +113,10 @@
 
     .men-btn{
         height: 5vh;
-        margin-top: 10vh;
+        margin-top: 10%;
     }
     .tsk-btn{
-        margin-top: 5vh;
+        margin-top: 2%;
         height: 5vh;
     }
 

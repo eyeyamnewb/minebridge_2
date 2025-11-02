@@ -1,18 +1,20 @@
 {% extends "patient/base.html" %}
 
 {% block content %}
-<div class="apptm-con crb-F">
-
+<div class="main-con crb-F">
+    <div class="title-card">
+        Appointments
+    </div>
     <div class="appt-con-line">
-        <div class="appt-con crb-F">
-            <header class="appt-h crb-HT">
+        <div class="appt-con b-shad-gen crb-F">
+            <header class="appt-h head-font head-clr bdr-style crb-HT">
                 <header>upcoming appointment</header>
             </header>
             <div class="appt-l crb-H">
                 <div class="appt-scrl">
                     {% for pending in pending_appointment %}
-                    <div class="appt-li crb-F">
-                        <div class="appt-li-i">
+                    <div class="appt-li bdr-active mn-font1 crb-F">
+                        <div class="appt-li-i mn-font1">
                             <p>Datetime: {{ pending.appointment_date }}, {{ pending.appointment_time }}</p>
                             <p>Dr: {{ pending.doctor.who.full_name }}</p>
                             <p>Meeting: {{ pending.appointment_meeting_type }}</p>
@@ -20,7 +22,7 @@
                         </div>
                     </div>
                     {% empty %}
-                    <div class="mt-appt-con">
+                    <div class="mt-appt-con mt-font">
                          there are no appointments
                     </div>       
                     {% endfor %}
@@ -29,15 +31,15 @@
             </div>
         </div>
 
-        <div class="appt-con crb-F">
-            <header class="appt-h crb-HT">
+        <div class="appt-con1 b-shad-gen crb-F">
+            <header class="appt-h head-font head-clr bdr-style crb-HT">
                 <header>complete appointment</header>
             </header>
             <div class="appt-l crb-H">
                 <div class="appt-scrl">
                     {% for x in complete_appointment %}
-                    <div class="appt-li crb-F">
-                        <div class="appt-li-i">
+                    <div class="appt-li bdr-active mn-font1 crb-F">
+                        <div class="appt-li- mn-font1">
                             <p>Datetime:{{ x.appointment_date }}, {{ x.appointment_date }}</p>
                             <p>Dr:{{ x.appointment_date }}</p>
                             <p>Meeting :{{ x.appointment_date }}</p>
@@ -45,7 +47,7 @@
                         </div>
                     </div>
                     {% empty %}
-                    <div class="mt-appt-con">
+                    <div class="mt-appt-con mt-font">
                          there are no appointments
                     </div>       
                     {% endfor %}
@@ -54,15 +56,15 @@
             </div>
         </div>
 
-         <div class="appt-con crb-F">
-            <header class="appt-h crb-HT">
+         <div class="appt-con1 b-shad-gen crb-F">
+            <header class="appt-h head-font head-clr bdr-style crb-HT">
                 <header>cancelled appointment</header>
             </header>
             <div class="appt-l crb-H">
                 <div class="appt-scrl">
                     {% for x in complete_appointment %}
-                    <div class="appt-li crb-F">
-                        <div class="appt-li-i">
+                    <div class="appt-li bdr-active mn-font1 crb-F">
+                        <div class="appt-li-i mn-font1">
                             <p>Datetime:{{ x.appointment_date }}, {{ x.appointment_date }}</p>
                             <p>Dr:{{ x.appointment_date }}</p>
                             <p>Meeting :{{ x.appointment_date }}</p>
@@ -70,7 +72,7 @@
                         </div>
                     </div>
                     {% empty %}
-                    <div class="mt-appt-con">
+                    <div class="mt-appt-con mt-font">
                          there are no appointments
                     </div>       
                     {% endfor %}

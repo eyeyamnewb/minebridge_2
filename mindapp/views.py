@@ -24,7 +24,7 @@ from .forms import (loginform, RegistrationForm,
                      moodselectionform, #PasswordChangeForm,
                      password_change_form, task_form,
                      mentalinfo_updating,details_form,
-                     appointment_form)
+                     appointment_form,reschedule_appointment_form)
 from django.contrib.auth import (authenticate, hashers, 
                                  login, logout, update_session_auth_hash)
 
@@ -94,10 +94,11 @@ def login_view(request):
                     login(request, user)
 
                     if user.is_staff:
-                        return redirect('practitioner_dashboard')  # Redirect to the practitioner dashboard
+                        return redirect('mindapp:practitioner_dashboard')
+                        #return redirect('mindapp:test_run')  # Redirect to the practitioner dashboard
                     else:
-                        return redirect('patient_dashboard')  # Redirect to the patient dashboard
-                        
+                        return redirect('mindapp:patient_dashboard')  # Redirect to the patient dashboard
+                        #return redirect('mindapp:test_run')
     else:
         form = loginform()
     context = {'form': form}
@@ -124,7 +125,7 @@ def registration_view(request):
 
             login(request, user)  # Log the user in after registration
             # Redirect to the appropriate dashboard
-            return redirect('details') 
+            return redirect('mindapp:details') 
     else:
         form = RegistrationForm()
         context = {'form': form}
@@ -134,7 +135,7 @@ def registration_view(request):
 "#################### this is the details completion page view ####################"
 def detail_fill(request):
     if not request.user.is_authenticated:
-        return redirect('index')
+        return redirect('mindapp:index')
     
     if request.method == 'POST':
         form = details_form(request.POST)
@@ -202,14 +203,14 @@ def detail_fill(request):
                 is_gmail_user = email and (email.endswith('@gmail.com') or email.endswith('@googlemail.com'))
                 if is_gmail_user and not patient.who.google_auth:
                     request.session['next_url'] = 'patient_dashboard'
-                    return redirect('google_calendar_auth')
+                    return redirect('mindapp:google_calendar_auth')
                         
-                return redirect('patient_dashboard')
+                return redirect('mindapp:patient_dashboard')
 
             except Exception as e:
                 print("DETAIL_FILL ERROR:", e)
                 messages.error(request, f"Error completing profile: {str(e)}")
-            return redirect('login')
+            return redirect('mindapp:login')
     else:
         form = details_form()
     
@@ -222,16 +223,16 @@ def detail_fill(request):
 def logout_view(request):
     if User.is_authenticated:
         logout(request)
-        return redirect('index')
+        return redirect('mindapp:index')
 
 ######################## Practitioner views ##############################################
 ##########################################################################################
 
 def practitioner_dashboard_view(request):
-    if not request.user.is_authenticated:
-        return redirect('login')
+    if not request.user.is_authenticated :
+        return redirect('mindapp:login')
     elif not request.user.is_staff:
-        return redirect('patient_dashboard')
+        return redirect('mindapp:patient_dashboard')
     
          #turn normal user to doctor and delete user patient info if exist
     user_info = userinfo.objects.get(who=request.user)
@@ -283,9 +284,9 @@ def practitioner_dashboard_view(request):
 #
 def practitioner_patients_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     if not request.user.is_staff:
-        return redirect('patient_dashboard')
+        return redirect('mindapp:patient_dashboard')
     
     patients = patientinfo.objects.all()
     patient_mentals= mentalinfo.objects.all()
@@ -306,9 +307,9 @@ def practitioner_patients_view(request):
 #
 def practitioner_analytics_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     if not request.user.is_staff:
-        return redirect('patient_dashboard')
+        return redirect('mindapp:patient_dashboard')
     
     #get patient gender for analytics
     gender_data = (
@@ -396,9 +397,9 @@ def practitioner_analytics_view(request):
 #
 def practitioner_setting_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     if not request.user.is_staff:
-        return redirect('patient_dashboard')
+        return redirect('mindapp:patient_dashboard')
     
     pass_change = password_change_form(request.user)
     
@@ -411,9 +412,9 @@ def practitioner_setting_view(request):
 #
 def practitioner_appointment_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     if not request.user.is_staff:
-        return redirect('patient_dashboard')
+        return redirect('mindapp:patient_dashboard')
     
     # get pending appointments for the practitioner
     # and sort by appointment date and time
@@ -434,11 +435,35 @@ def practitioner_appointment_view(request):
         appointment_status__in=["complete","cancelled"]
     ).order_by('appointment_date', 'appointment_time')
 
+    #get existing appointment for the practitioner
+    appointment_id = request.GET.get('appointment_id', None)
+
+    initial_data = {}
+
+    if appointment_id:
+        try:
+            exist_appointment = patient_appointment.objects.get(
+                id= appointment_id,
+                appointment_status='pending')
+            
+            initial_data = {
+            'existing_appointment': exist_appointment.id,
+            'date': exist_appointment.appointment_date,
+            'time': exist_appointment.appointment_time,
+            'meeting': exist_appointment.appointment_meeting_type,
+            'appt_type': exist_appointment.appointment_type,
+            'reminder': exist_appointment.appointment_reminder,
+        }
+        except patient_appointment.DoesNotExist:
+            pass
+
     form = appointment_form()
+    reschedule = reschedule_appointment_form(user=doctor_info, initial=initial_data)
     cont = {
         "pending_appointment": pending,
         "complete_appointment": complete,
         'appointment' : form,
+        'reschedule_appointment': reschedule
 
     }
     
@@ -478,9 +503,9 @@ def next_month(d):
 #
 def patient_dashboard_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     elif request.user.is_staff:
-        return redirect('practitioner_dashboard')
+        return redirect('mindapp:practitioner_dashboard')
     else:
         user_info = userinfo.objects.get(who=request.user)
         name = user_info.full_name 
@@ -533,10 +558,16 @@ def patient_dashboard_view(request):
             appointments_json[day.isoformat()] = [
             f"{a.appointment_time} with Dr. {a.doctor.who}" for a in appts
             ]
+
+    
+    #--------- messaging fucntion here -----------
+
+    test = "bob"
         
 
     context = {
         'appointments_json' : json.dumps(appointments_json),
+        "test": test,
         'month': d.month,
         'year': d.year,
         'calendar': calendar_html,
@@ -564,15 +595,15 @@ def mood_selection_view(request):
                 patient.latest_mood = mood
                 patient.save()
             
-    return redirect('patient_dashboard')  # Redirect to the patient dashboard
+    return redirect('mindapp:patient_dashboard')  # Redirect to the patient dashboard
 #
 #
 #
 def patient_task_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     if request.user.is_staff:
-        return redirect('practitioner_dashboard')
+        return redirect('mindapp:practitioner_dashboard')
     
     reg_user = userinfo.objects.get(who=request.user)
     patient = patientinfo.objects.get(who=reg_user)
@@ -598,9 +629,9 @@ def patient_task_view(request):
 #
 def patient_setting_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     if request.user.is_staff:
-        return redirect('practitioner_dashboard')
+        return redirect('mindapp:practitioner_dashboard')
     else:
         set_pass_form = password_change_form(request.user)
     cont = {
@@ -621,17 +652,17 @@ def password_reset(request):
 
             login(request,user)
             if request.user.is_staff:
-                return redirect('practitioner_dashboard')
+                return redirect('mindapp:practitioner_dashboard')
             else:
-                return redirect('patient_dashboard')
+                return redirect('mindapp:patient_dashboard')
 #
 #
 #
 def patient_appointment_view(request):
     if not request.user.is_authenticated:
-        return redirect('login')
+        return redirect('mindapp:login')
     if request.user.is_staff:
-        return redirect('practitioner_dashboard')
+        return redirect('mindapp:practitioner_dashboard')
     
     user_info = userinfo.objects.get(who=request.user)
     patient = patientinfo.objects.get(who=user_info)    
@@ -680,9 +711,9 @@ def assign_task(request):
                     task_status='pending',
                 )
 
-                return redirect('practitioner_dashboard')
+                return redirect('mindapp:practitioner_dashboard')
     else:
-        return redirect('login')    
+        return redirect('mindapp:login')    
 
 #
 #--------function for update patient mental states--------
@@ -690,7 +721,7 @@ def assign_task(request):
 
 def update_mental(request):
     if not request.user.is_staff:
-        return redirect('login')
+        return redirect('mindapp:login')
 
     if request.method == 'POST':
          form = mentalinfo_updating(request.POST)
@@ -713,9 +744,9 @@ def update_mental(request):
 
                 mentals.save()
 
-                return redirect('practitioner_patients')
+                return redirect('mindapp:practitioner_patients')
     else:
-        return redirect('login')    
+        return redirect('mindapp:login')    
         
 #
 #--------function to handle update taask completion------------
@@ -740,14 +771,14 @@ def task_complete_logic(request):
     if source:
         return redirect(source)
     else:
-        return redirect('patient_dashboard')
+        return redirect('mindapp:patient_dashboard')
 #
 # ----------------------appointmnet stuff -----------------------
 #
 
 def tempory_appointment(request):
     if not request.is_staff:
-        return  redirect('index')
+        return  redirect('mindapp:index')
 
     if request.method == 'POST': 
         form = appointment_form(request.POST)
@@ -772,7 +803,7 @@ def tempory_appointment(request):
     appt.appointment_reminder = reminder
     appt.save()
 
-    return redirect('practitioner_appointment')
+    return redirect('mindapp:practitioner_appointment')
 
 ##!!!!!!!!here be for google appointment !!!!!!!!! x    
 def create_appointment(request):
@@ -925,7 +956,8 @@ def create_appointment(request):
                     # Log error but don't prevent appointment creation
                     print(f"Error adding to doctor's Google Calendar: {str(e)}")
             
-            return JsonResponse({'success': True})
+
+            return redirect(request.META.get('HTTP_REFERER')) #JsonResponse({'success': True})
         except Exception as e:
             return JsonResponse({'error': str(e)}, status=400)
     return JsonResponse({'error': 'Invalid request'}, status=400)
@@ -1080,7 +1112,7 @@ def reschedule_appointment(request):
                     # Log error but don't prevent appointment rescheduling
                     print(f"Error updating Google Calendar event: {str(e)}")
 
-            return JsonResponse({'success': True})
+            return redirect(request.META.get('HTTP_REFERER'))  #JsonResponse({'success': True})
         except patient_appointment.DoesNotExist:
             return JsonResponse({'error': 'Appointment not found'}, status=404)
         except Exception as e:
@@ -1092,7 +1124,7 @@ def reschedule_appointment(request):
 
 def transfer_no_jutsu(request, patient_id):
     if not request.user.is_staff:
-        return redirect('login')
+        return redirect('mindapp:login')
     patient = patientinfo.objects.get(id=patient_id)
     if request.method == 'POST':
         new_doctor_id = request.POST.get('doctor_id')
@@ -1132,7 +1164,7 @@ def google_calendar_auth(request):
 
 def google_calendar_callback(request):
     if request.user.is_anonymous:
-        return redirect('patient_dashboard')
+        return redirect('mindapp:patient_dashboard')
     
     state = request.GET.get('state')
     flow = Flow.from_client_secrets_file(
@@ -1196,7 +1228,7 @@ def google_calendar_callback(request):
                 'client_secret': credentials.client_secret,
                 'scopes': credentials.scopes
             }
-            return redirect('details_completion')
+            return redirect('mindapp:details_completion')
             
     except userinfo.DoesNotExist:
         # User profile doesn't exist yet, store credentials in session
@@ -1208,10 +1240,40 @@ def google_calendar_callback(request):
             'client_secret': credentials.client_secret,
             'scopes': credentials.scopes
         }
-        return redirect('details_completion')
+        return redirect('mindapp:details_completion')
 
+       
 def login_with_google(request):
     """Login directly with Google account"""
     request.session['next_url'] = 'patient_dashboard'  # After auth, go to dashboard
     return google_calendar_auth(request)
 
+from django.core.mail import send_mail
+
+def render_feedbackform(request):
+    if request.user.is_authenticated:
+        if request.method == "POST":
+            subject  = request.POST.get("subject")
+            user = User.objects.get(username = request.user)
+            user_info = userinfo.objects.get(who = user)
+            print(subject)
+            print("test bu",user_info.full_name)
+            
+            if not subject == None or not subject == "" or not subject == user_info.full_name:
+                content = request.POST.get("content")
+                user = User.objects.get(username = request.user)
+                user_email = user.email
+                send_mail(
+                    f"feedback from {user_email}: " + subject,
+                    f"feedback content: " + content,
+                    user_email,
+                    ["mindbridge.bwn@gmail.com"],
+                    fail_silently=False 
+                )
+                if request.user.is_staff:
+                    return redirect('mindapp:practitioner_dashboard')
+                else:
+                    return redirect('mindapp:patient_dashboard')
+                
+        return render(request,"feedback.html")
+        

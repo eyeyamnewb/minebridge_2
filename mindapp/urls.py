@@ -1,6 +1,11 @@
+
+
 # urls.py
 from django.urls import path
-from . import views
+from . import views, messaging, test_view
+from . import ai_framework , contact
+
+app_name = 'mindapp'
 
 urlpatterns = [
     path('', views.homepage_view, name='index'),
@@ -15,7 +20,8 @@ urlpatterns = [
     path('practitioner/setting/', views.practitioner_setting_view, name='practitioner_setting'),
     path('practitioner/appointment/', views.practitioner_appointment_view, name='practitioner_appointment'),
     path('practitioner/appointment/make/', views.create_appointment, name='make_appointment'),
-    path('practitioner/appointment/temp/', views.tempory_appointment,name = "tempo_appt"),  
+    path('practitioner/appointment/reschedule/', views.reschedule_appointment,name = "reschedule_appointment"),
+    path('practitioner/appointment/temp/', views.tempory_appointment,name = "tempory_appointment"),
     path('practionioner/task_assign/',views.assign_task, name="assign_task"),
     path('practionioner/update_mental/',views.update_mental, name="mental_update"),
     
@@ -28,10 +34,19 @@ urlpatterns = [
     path('patient/appointment/', views.patient_appointment_view, name='patient_appointment'),
 
     path('password_change/',views.password_reset, name="change_password"),# handle possword reset
-
+    path('feedback/', views.render_feedbackform, name="feedback"),
      #######################this is for the google calendar integration ####################
     path('google-calendar-auth/', views.google_calendar_auth, name='google_calendar_auth'),
     path('oauth2callback/', views.google_calendar_callback, name='google_calendar_callback'),
     path('login-with-google/', views.login_with_google, name='login_with_google'),
     
+    #^disable for now
+
+########################################### message path ###################################
+    path('api/messages/<uuid:room_id>/', messaging.fetch_messages, name='get_messages'),
+   #path('lobby/', views.lobby, name='lobby'),
+    path('test_page/', test_view.test_1, name='test_run'),
+    path("contact/add/<int:user_id>/",contact.add_contact,name="add contact"),
+    #path('history/<str:room_id>/', test_view.history, name='history'),
+    #path('<str:group_id>/', test_view.room, name='room'),
 ]

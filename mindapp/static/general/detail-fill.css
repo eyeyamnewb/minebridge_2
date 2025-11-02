@@ -30,19 +30,16 @@ label {
 
 /*################# containers ############################*/
 .detail-form-box{
-    box-shadow: 0 0 4px 4px gray  ;
-    width: 60vw;
-    transform: translateX(20vw) translateY(5vh);
-    padding: 1px;
+    background-color: var(--quinary-color) ;
+    width: 50vw;
+    transform: translateX(25vw) translateY(5vh);
     margin-bottom: 5vw;
 }
 
 .detail-header{
-    background-image: var(--head-gradient) ;
-    box-shadow: 0 0 4px 4px gray ;
     font-size: 2vw;
     font-weight: bold;
-    padding: 1px;
+    padding: 10px;
 }
 
 .detail-header header{
@@ -51,7 +48,8 @@ label {
 }
 
 .detail-body{
-    margin: 5%;
+
+    padding: 80px;
 }
 
 /*################# button fields ############################*/

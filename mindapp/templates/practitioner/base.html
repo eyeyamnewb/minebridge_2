@@ -6,28 +6,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Patient Base</title>
+    <title>practioner  Base</title>
     {%comment%} style for general start
-    <link rel="stylesheet" href="{% static 'general/navigation-bar.css' %}">
-    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
-    <link rel="stylesheet" href="{% static 'general/minor-adjustment.css' %}">
+    
+    
     <!--link rel="stylesheet" href="{% static 'general/form-control.css' %}"-->
      style for general end
-    <link rel="stylesheet" href="{% static 'doctor/dashboard.css' %}">
+    
+     <link rel="stylesheet" href="{% static 'doctor/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'mobile.css' %}">
     <link rel="stylesheet" href="{% static 'tablet.css' %}"> {%endcomment%}
+   <link rel="stylesheet" href="{% static 'general/minor-adjustment.css' %}">
+    <link rel="stylesheet" href="{% static 'general/navigation-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
     <link rel="stylesheet" href="{% static 'doctor/desktop.css' %}">
     <!--link rel="stylesheet" href="{% static 'general/form-control.css' %}"-->
-    <link rel="stylesheet" href="{% static '.css' %}">
     <link rel="stylesheet" href="{% static 'general/button-stuff.css' %}">
     <link rel="stylesheet" href="{% static 'doctor/base.css' %}">
     <link rel="stylesheet" href="{% static 'general/message_modal.css' %}">
-    
+    <link rel="stylesheet" href="{% static 'general/body content wrapper.css' %}">
+
 
 </head>
-<body>
 
-    <div class="burger-btn-box">
+<script src="{% static 'scripts/web-socket/message.js' %}"></script>
+<script>
+    
+    
+
+    document.addEventListener("DOMContentLoaded",function(){
+
+            const noti = new WebSocket(notified_user());
+            
+            noti.onmessage = function(e){
+                const data = JSON.parse(e.data);
+
+                if (data.type === 'new_message'){
+                    const contacted_Card = document.querySelector(`.contact-card[data-user_id='${data.from_user_id}']`);
+                    const notif_dongle = document.querySelector(`.notif-dongle[data-notified_user_id='${data.from_user_id}']`);
+                    if (contacted_Card){
+                        
+                        notif_dongle.classList.add('show');
+                    
+                    }
+                }
+            };
+
+            noti.onclose = function(e){
+                console.error('hello?')
+            }
+    });
+
+    
+</script>
+
+<body>
+    <div class="view-notice"> hello there this place is not available yet while the whole product is in beta, but we will work on them with each version update </div>
+    <div class="burger-btn-box" onclick="burger()">
         <div class="BURG-BODY">
             <span></span>
             <span></span>
@@ -37,53 +72,321 @@
     <nav class="navi" id="navicon">
 
         <ul class="nav-li">
-            <div class="port-crd">DOCTOR PORTAL</div>
-            <li class="li-i"><a href="{% url 'practitioner_dashboard' %}">Dashboard</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_patients' %}">Patients</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_analytics' %}">Analytics</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_setting' %}">Settings</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_appointment' %}">Appointments</a></li>
-            <li class="li-i"><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>
-
-        <ul class="nav-li-icon" style="display:none;">
-            <div class="port-crd">DOCTOR PORTAL</div>
-            <li class="li-i"><a href="{% url 'practitioner_dashboard' %}">Dashboard</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_patients' %}">Patients</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_analytics' %}">Analytics</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_setting' %}">Settings</a></li>
-            <li class="li-i"><a href="{% url 'practitioner_appointment' %}">Appointments</a></li>
-            <li class="li-i"><a href="{% url 'logout' %}">Logout</a></li>
+            <div class="logo-img">
+                <img class="navm-icon" src="https://drive.google.com/thumbnail?id=1CfquazMDphy-Sm72CcdsXuNPg7rf1sAL" alt="minebridge_dark-bridge icon"> 
+            </div>
+            <div class="port-crd">MINDBRIDGE</div>
+            <li class="li-i dsh-icon"><a href="{% url 'mindapp:practitioner_dashboard' %}">Dashboard</a></li>
+            <li class="li-i pat-icon"><a href="{% url 'mindapp:practitioner_patients' %}">Patients</a></li>
+            <li class="li-i ana-icon"><a href="{% url 'mindapp:practitioner_analytics' %}">Analytics</a></li>
+            <li class="li-i set-icon"><a href="{% url 'mindapp:practitioner_setting' %}">Settings</a></li>
+            <li class="li-i appt-icon"><a href="{% url 'mindapp:practitioner_appointment' %}">Appointments</a></li>
+            <li class="li-i logout-icon"><a href="{% url 'mindapp:logout' %}">Logout</a></li>
         </ul>
 
     </nav>
-     <div class="msg-con" onclick="openModal()"> <p>chat</p> </div>
-     <div class="msg-modal-box">
-        <div class="close-chat" onclick="closeModal()"><p>X</p></div>
-        <div class="under-construction">
-            <p>Chat feature is under construction</p>
-            <p>We are working very hard to bring this feature to you soon!</p>
-            <div class="worker">
-                <img class="worker-icon" src="https://icon-library.com/images/under-construction-icon-png/under-construction-icon-png-27.jpg" alt="Worker">
+      <div class="contact-list crb-sd-r bdr-style-top-r">
+        <div class="contact-H head-clr">
+            <div class="contact-mobile-close" onclick="mobilecontact_close()"> v </div>
+            <p>Contacts</p> 
+            <div class="add-contact-btn head-clr crb-F" onclick="toggle_addsuser()">+add</div>    
+        </div>
+        
+        <div class="adduser-form">
+            <div class="search-contact">
+                <input class="contact-searchbar" type="text" placeholder="search patient/doctor...">
+            </div>
+            <div class="search-user-list">
+                {% for user in registered_user %}
+                <div class="search-user-obj crb-F" >
+                    {% csrf_token %}
+                    <div class="search-name-obj">
+                        <div class="search-username">@ {{user.who.username}}</div>
+                        <div class="search-fullname">{{user.full_name}}</div>
+                    </div>
+                    
+                    <button class="btn crb-F add-contact-btn-btn" data-user_id="{{ user.id }}"  >add</button>
+                </div>
+                {% endfor %}
             </div>
         </div>
-</div>
+        
+        <div class="contact-spc ">
+            
+            {% for exist_contact in exist_contact_list %}
+
+            <div class="contact-card bdr-active crb-F"
+                data-user_id="{{exist_contact.contact.who.id }}"
+                data-request_user = "{{ request.user.id }}"
+                data-request_username = "{{ request.user.username }}" 
+                data-contact_fullname="{{exist_contact.contact.full_name}}"
+                data-contact_username="{{exist_contact.contact.who.username}}"
+                >
+                <div class="notif-dongle circle"
+                data-notified_user_id="{{exist_contact.contact.who.id }}"></div>
+         
+                <div class="contact-txt-wrap">
+                    <div class="contact-name">
+                        {{ exist_contact.contact.full_name }}
+                    </div>
+                    <div class="contact-lst-msg">
+                        
+                    </div>
+                </div>
+                
+                <div class="contact-icon" >
+                    <img class="contact-icon-img" src="https://img.freepik.com/premium-vector/user-icon-round-grey-icon_1076610-44912.jpg"  alt=" title">
+                </div>
+            </div>
+
+            {% endfor %}
+            
+        </div>
+    </div>
+
+         <div class="msg-con head-clr crb-F" > <p>chat</p> </div>
+         <footer class=" foot ">
+             
+            <p>
+                powered by <a href="https://www.mindbridge.com" target="_blank" style="text-decoration: underline; color: black;">mindbridge</a> | &copy; 2024 minebridge
+            </p>
+
+            <div class="foot-sup">
+                <p >contacts us</p>
+                <p><a href="{% url 'mindapp:feedback' %}"> feedback</a></p>
+            </div>
+         </footer>
+        
+         <div class="msg-modal-box crb-F bdr-style mn-font1">
+            <div class="close-chat" onclick="closeModal()"><p>X</p></div>
+            {% comment %} this will be the chat box, for now it is just a placeholder {% endcomment %}
+            <div class="doc-name-spc"> <!-- rename to user name space -->
+            {% comment %} contacted doctor name will go here {% endcomment %}
+                <p style="text-decoration: underline;">
+                    <span id="contact_username_display"> bob </span>
+                    <span id="room_id_in" data-roomID=""></span>
+                </p>
+            </div>
+            <div class="txt-con mn-font1 crb-F" id="chat_log">
+                
+            </div>
+            <div class="texter-spc">
+            
+                <form class="txtn-field" id="message_form" 
+                    x-cloak
+                    @submit.prevent="submit"
+                    x-data="{
+                        state: 'composing', 
+                        errors: {},
+                        submit(){
+
+                            to_send();
+                        }
+                    }"
+                    action="">
+                    {% csrf_token %}
+                    <textarea type="text" id="message_input" placeholder="Type your message here..." x-ref="messageInput"></textarea>
+                    <button class="btn send-btn crb-F" id="send_message" type="submit" >Send</button>
+                </form>
+            </div>
+        </div>
+        {% comment %} it end here, will be working on it once the ai framework is properly build {% endcomment %}
+    </div>
     <!-- Content goes here -->
     <div class="content">
         {% block content %}
         {% endblock %}
 </body>
-
+{%comment%} alpine js for form submit handling {%endcomment%}
+<script
+      defer=""
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js"
+    ></script>
+<script src="{% static 'scripts/web-socket/message.js' %}"></script>
 <script>
 
+    const contacts = document.querySelector('.contact-list');
+    const chat_button = document.querySelector('.msg-con');
     const msg_modal_box = document.querySelector('.msg-modal-box');
+    const user_add_list = document.querySelector('.adduser-form');
+    const AddUserButton = document.querySelector('.add-contact-btn');
 
+    const searchbar = document.querySelector('.contact-searchbar');
+    const userobj = document.querySelectorAll('.search-user-obj');
+    const Useraddbtn = document.querySelectorAll('.add-contact-btn-btn');
+    const mobile_navi = document.querySelector('.navi');
+        
+
+    
+
+    //--------- messasge variable 
+    const contact_msg_card = document.querySelectorAll(".contact-card");
+    const contact_username_display = document.getElementById("contact_username_display")
+    const room_id_input = document.getElementById("room_id_in");
+    const text_content = document.getElementById('message_input');
+    const send_text = document.getElementById('send_message');
+    const chat_log =  document.getElementById('chat_log');
+    const message_form = document.getElementById('message_form');
+    const burger_btn = document.querySelector(".burger-btn-box");
+
+    
+    
+    
+    //--------- just toggle some ui for contact and message box
     function closeModal() {
         msg_modal_box.classList.remove('show');
+
     }
     function openModal() {
         msg_modal_box.classList.add('show');
     }
+
+    function togglecontact(){
+    contacts.classList.toggle('show');
+    }
+
+    function mobilecontact_close(){
+        contacts.classList.remove('show');
+    }
+
+    function toggle_addsuser(){
+        user_add_list.classList.toggle('show');
+    }
+
+    function burger(){
+        burger_btn.classList.toggle('rotate');
+        mobile_navi.classList.toggle('show');
+        chat_button.classList.toggle('show');
+    }
+
+
+    AddUserButton.addEventListener('toggle',toggle_addsuser);
+    chat_button.addEventListener('click', togglecontact);
+
+    //----------contact name for contact message
+    let active_msg_sock = null;
+    let current_room_id = null;
+    let user_a =null;
+    let user_b = null;
+    let username_a = null;
+    let username_b = null;
+
+
+    contact_msg_card.forEach(function(btn){
+            btn.addEventListener('click',function(){
+
+                if(active_msg_sock){
+                    active_msg_sock.close();
+                }
+
+                chat_log.innerHTML = '';
+
+
+                contact_username_display.textContent = btn.dataset.contact_username;
+                
+                user_a = btn.dataset.request_user;
+                user_b = btn.dataset.user_id;
+                
+                msg_modal_box.classList.toggle('show');
+                
+                username_a = btn.dataset.request_username ;
+                username_b = btn.dataset.contact_username;
+
+                checkroom(user_a,user_b,function(room_id) {
+                    if (room_id_input){
+                    //room_id_input.textContent ='room' + room_id;
+                        room_id_input.dataset.roomID = room_id;
+                    }
+
+                    current_room_id = room_id;
+                    console.log('passing and calling room now: ' + current_room_id);
+
+                    to_load_message(room_id,user_a,chat_log);
+
+                    active_msg_sock = established_connection(current_room_id,user_a,user_b,chat_log);
+                });
+            });
+        });
+
+
+    function to_send(){
+
+        const messageText = text_content.value;
+        if (messageText.trim() === '' )return;
+
+        if(active_msg_sock && active_msg_sock.readyState === WebSocket.OPEN){
+            active_msg_sock.send(JSON.stringify({
+                'message': messageText,
+            }));
+
+            text_content.value = '';
+        } else {
+            console.error('nom eesage send, socket not connected')
+        }
+
+        //message_input(current_room_id,text_content.value,user_a,user_b,chat_log);
+        
+    };  
+        
+    
+    //#################################ai generated code
+        
+
+    //-------------------search bar function for adding user
+    searchbar.addEventListener('input',function(){
+        const SearchTerm = this.value.toLowerCase();
+        userobj.forEach(function(UserObj) {
+            const name = UserObj.textContent.toLowerCase();
+            UserObj.style.display = name.includes(SearchTerm) ? '' : 'none';
+            
+        });
+    })
+
+    //----------csrf helper thingy
+    function getCookie(name){
+        let cookieValue = null;
+        if (document.cookie && document.cookie !== ''){
+            const cookies = document.cookie.split(';');
+            for (let i = 0; i < cookies.length; i++){
+                const cookie = cookies[i].trim();
+                if (cookie.substring(0,name.length + 1) === (name + '=')) {
+                    cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                    break;
+                } 
+            }
+        }
+        return cookieValue;
+    }
+    
+
+    //----adduser button logic
+    Useraddbtn.forEach(function(btn) {
+    btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        // The btn variable already refers to the button
+        const userId = btn.getAttribute('data-user_id');
+        console.log('CSRF Token Value:', getCookie('csrftoken'));
+
+        fetch(`/contact/add/${userId}/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': getCookie('csrftoken'),
+            },
+        })
+        .then(response => {
+            if (response.ok) {
+                btn.textContent = 'added!';
+                btn.disabled = true;
+            } else {
+                alert('failed to add contact.');
+            }
+        });
+    });
+});
+    
+    //-----------------------------message socket
+
 </script>
+
 </html>
 

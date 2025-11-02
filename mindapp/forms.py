@@ -1,3 +1,5 @@
+
+
 # forms.py
 from django import forms
 from django.contrib.auth.models import User
@@ -173,6 +175,44 @@ class appointment_form(forms.Form):
             (patient.who.who.id, patient.who.full_name)
             for patient in patientinfo.objects.all()
         ] 
+
+class reschedule_appointment_form(forms.Form):
+    appointment_id = forms.ChoiceField(
+        label="appointment to rechedule",
+        required=True)
+    
+    new_date = forms.DateField(
+        widget=forms.DateInput(
+            attrs={'type': 'date'}))
+    
+    new_time = forms.TimeField(
+        widget=forms.TimeInput(attrs={'type': 'time'}))
+    
+    meeting = forms.ChoiceField(
+        choices=appointment_meeting_type_choices)
+    
+    appt_type = forms.ChoiceField(
+        choices=appointment_type_choices)
+    
+
+    def __init__(self, *args, **kwargs):
+        user = kwargs.pop('user', None)
+        super().__init__(*args, **kwargs)
+        if user is not None:
+            appointments = patient_appointment.objects.filter(
+                doctor=user,
+                appointment_status='pending'  # Make sure your model has a 'status' field!
+            )
+        else:
+            appointments = patient_appointment.objects.none()
+        self.fields['appointment_id'].choices = [
+            (
+                appointment.id,
+                f"{appointment.who.who.full_name} - {appointment.appointment_date} {appointment.appointment_time}"
+            )
+            for appointment in appointments
+        ]
+
 ######################### mental update form ###########################################
 #######################################################################################
 
@@ -191,3 +231,4 @@ class mentalinfo_updating(forms.Form):
     ###########################################################################3
 
     #class messaging(forms.Form):
+

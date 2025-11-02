@@ -1,40 +1,611 @@
-@import url('../variable.css');
+    @import url('../variable.css');
 
-@media (min-width: 1024px) {
-     .navi {
-        display:flex;
-        position: fixed;
-        background-color: var(--secondary-color);
-        color: white;
-        width: 15vw;
-        padding: 0.5rem;
-        z-index: 1000;
-        height: 100vh;
-        margin-top: 1vh;
-        margin-left: -1vw;
-    }
-    .port-crd {
-        font-size: var(--comical-font-size);
-    }
-    .nav-li {
-        display: flex;
+
+    @media (max-width: 414px) and (max-height: 812px){
+        .burger-btn-box{
+            display: block;
+            width: 50px;
+            position: fixed;
+            z-index: 10001;
+            margin: 20px;
+            
+            transform: rotate(0deg);
+            transition: ease 0.3s;
+        }
+
+        .burger-btn-box.rotate{
+            transition: ease 0.3s;
+            transform: rotate(90deg);
+        }
+        
+        .BURG-BODY span {
+            display: block;
+            background-color: rgb(180, 179, 179);
+            width: 100%;    
+            height: 5px;
+            margin-top: 5px;
+        }
+        
+        .navi {
+            display:block;
+            position: fixed;
+            background-color: var(--quinary-color);
+            font-weight: bold;
+            color: black;
+            width: 300px; /* change to 150 */
+            height: 100vh;
+            padding: 10px;
+            z-index: 1000;  
+            margin-top: -1.5vh;
+            margin-left: -2.5vw;
+            transform: translateX(-500px);
+            transition: ease 0.3s;
+        }
+
+        .navi.show {
+            display:flex;
+            width: 300px;
+            transform: translateX(-00px);
+            transition: ease 0.3s;
+        }
+
+        /*######## company icon ########*/
+        .navm-icon {
+            width: 150px;
+            height: auto;
+        }
+
+        .logo-img {
+            margin-top: -40px;
+            margin-left:110px;
+            margin-bottom: -60px;
+        }
+
+        .port-crd {
+            display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 1.1rem;
+            transform: translateX(130px);
+            color: black;
+            font-weight: 900;
+            margin-bottom: 5%;
+        }
+
+        
+        .nav-li {
+            display: flex;
+            flex-direction: column;
+            color: black;
+            margin-left: -18%;
+            width: 100%;
+            
+            
+        }
+
+        .li-i {
+            font-size: 1.5rem;
+            background-color: lightgray;
+            padding: 10px;
+            border-top-right-radius: 100px ;
+            border-bottom-right-radius: 100px;        
+        }
+        .nav-li li a {
+            margin-left: 40px;
+            color: black;
+            text-decoration: none;
+        }
+
+
+    /* ########## message container ########## */
+        .msg-con{
+                    display: block;
+                    position: relative;
+                    z-index:1001;
+                    padding: 2px;
+                    width: 6000px;
+                    height: 60px;
+                    border: 2px solid white;
+                    transform: translateX(-500px) translateY(600px);
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    justify-items: center;
+                    justify-content: center;
+                    max-width: 230px;
+                    transition: ease 0.3s;
+                }
+
+            .msg-con.show{
+                transform: translateX(20px) translateY(600px);
+                transition: ease 0.3s;
+
+            }
+
+
+                .msg-con p{
+                    margin-top: 5%;
+                    margin-left: 0;
+                    color: white;
+                }
+
+        .msg-con:hover{
+            box-shadow: 0 0 4px 2px rgba(134, 38, 163, 0.452);
+            transition: ease 0.1s;
+            background-image: var(--gradient-hover);
+                    
+                }
+
+    .contact-list {
+        display: none;
+        opacity: 1;
         flex-direction: column;
-        color: var(--secondary-color);
-    }
-
-    .li-i {
-        font-size: var(--header-font-size);
-    }
-    .nav-li li a {
-
-        color: white;
-        text-decoration: none;
-    }
-
+        position: absolute;
+        z-index: 10002;
+        width: 100%;
+        height: 105%;
+        transform: translateX(-5px)translateY(2%);
+        background-color: var(--quinary-color);
+        padding: 0px;
+        transition: ease 0.3s;
+        touch-action: none;
+        border-bottom-left-radius:0px ;
+        border-bottom-right-radius: 0px;
+        border-top-left-radius:0px ;
+        border-top-right-radius: 0px;
 }
-@media (max-width: 768px){
 
-}
-@media (min-width: 768px) and (max-width: 1024px){
     
+
+    .contact-list.show {
+        display: block;
+        opacity: 1;
+        transition: ease 0.3s;
+        
+    }
+
+    .contact-H{
+        background-color: var(--headline-color);
+        display: flex;
+        border-top-right-radius: 10px;
+        justify-content: center;
+        justify-items: center;
+        font-weight: bolder;
+        font-size: 1.4rem;
+        padding: 2px;
+        }
+
+    .contact-H p{ 
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .add-contact-btn{
+        border-style: none;
+        font-size: 0.75em;
+        font-weight: bolder;
+        transform: translateX(130%)translatey(60%);   
+        /*margin: 1%;*/
+        max-width: 100px;
+        height: 10px;
+    }
+
+    .search-name-obj{
+        width: 300px;
+    }
+    .adduser-form{
+        display: none;
+        position: absolute;
+        z-index: 1002;
+        background-color: var(--quaternary-color);
+        width: 100%;
+        height: 500px;
+        padding: 1px;
+    }
+
+    .adduser-form.show{
+        display: block;
+    }
+
+    .search-contact input[type="text"]{
+        background-color: white;
+        width: 100%;
+        border: 1px solid lightgray;
+        height: 20px;
+        border-radius: 5px;
+    }
+    .search-user-list{
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    .search-user-obj{
+        display: flex;
+        background-color: var(--senary-color);
+        padding: 10px;
+        margin-top: 5%;
+        height: 40px;
+    }
+
+
+    .contact-spc{
+        border-bottom-right-radius: 20px;
+        background-color: white;
+        height :90%;
+        padding: 15px;
+        overflow: auto;
+
+         border-bottom-left-radius:0px ;
+    border-bottom-right-radius: 0px;
+    border-top-left-radius:0px ;
+    border-top-right-radius: 0px;
 }
+    
+
+
+
+    .contact-card{
+        background-color: white;
+        display: flex;
+        padding: 10px;
+        margin-bottom: 5%;
+    }
+
+    .notif-dongle{
+        display: none ;
+        background-color: var(--primary-color);
+        width: 20px;
+        height: 20px;
+        transform: translateX(440px) translateY(-10px);
+    }
+
+    .notif-dongle.show{
+        display: block ;
+        background-color: var(--primary-color);
+        width: 20px;
+        height: 20px;
+        transform: translateX(440px) translateY(-10px);
+    }   
+    .contact-mobile-close{
+        display: block;
+        transform: rotate(90deg) translateY(120px);
+        font-weight: 100;
+    }
+    .contact-name{
+        font-weight: bold;
+        border-bottom: 2px solid black;
+        width: 280px;
+    }
+
+    .contact-lst-msg{
+        width: 350px;
+        word-wrap:break-word;
+    }
+
+    .contact-icon{
+        margin-left: -60px;
+    }
+
+    .contact-icon-img{
+        width: 50px ;
+        height: 50px ;
+    }
+
+    /* ######## footer ########*/
+
+    .foot {
+        display: flex;
+        position: absolute;
+        z-index: 1000;
+        bottom: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 30px;
+        border-top: 3px solid white;
+        background-color: var(--quinary-color);
+        color: black;
+        font-weight: bold;
+        padding: 2px;
+        
+    }
+
+
+    .foot-sup{
+        display: flex;
+        padding: 1px;
+        margin-left: 0%;
+    }
+    .foot-sup p {
+        display: flex;
+        margin-top: 0;
+        width: 100px;
+        margin-right: 5%;
+        color: black;
+    }
+
+    .foot p a,
+    .foot p ,
+    .foot-sup p, .foot-sup p a{
+        
+        
+        font-size: 0.8rem;
+
+    }
+
+    }
+
+
+    /*################################# desktop #########################*/
+    @media (min-width: 1024px) {
+        .navi {
+            display:flex;
+            position: fixed;
+            background-color: var(--quinary-color);
+            font-weight: bold;
+            color: black;
+            width: 300px; /* change to 150 */
+            padding: 10px;
+            z-index: 1000;
+            height: 100vh;
+            margin-top: 1vh;
+            margin-left: -1vw;
+            transition: ease 0.3s;
+        }
+
+        .navi.show {
+            display:flex;
+            width: 300px;
+            transition: ease 0.3s;
+        }
+
+        /*######## company icon ########*/
+        .navm-icon {
+            width: 250px;
+            height: auto;
+        }
+
+        .logo-img {
+            margin-top: -60px;
+            margin-left: -50px;
+            margin-bottom: -90px;
+        }
+
+        .port-crd {
+            display: block;
+            font-family: Arial, Helvetica, sans-serif;
+            font-size: 2rem;
+            color: black;
+            font-weight: 900;
+            margin-bottom: 30%;
+        }
+
+        
+        .nav-li {
+            display: flex;
+            flex-direction: column;
+            color: black;
+        }
+
+        .li-i {
+            font-size: 2rem;
+        }
+        .nav-li li a {
+
+            color: black;
+            text-decoration: none;
+        }
+
+
+    /* ########## message container ########## */
+        .msg-con{
+                    display: block;
+                    position: fixed;
+                    z-index:1001;
+                    padding: 2px;
+                    width: 200px;
+                    height: 3vw;
+                    border: 2px solid white;
+                    margin-top: 80vh ;
+                    margin-left: 1vw;
+                    font-size: 1.8rem;
+                    font-weight: bold;
+                    justify-items: center;
+                    justify-content: center;
+                    max-width: 200px;
+                }
+
+                .msg-con p{
+                    margin-top: 5%;
+                    margin-left: 0;
+                    color: white;
+                }
+
+        .msg-con:hover{
+            box-shadow: 0 0 4px 2px rgba(134, 38, 163, 0.452);
+            transition: ease 0.1s;
+            background-image: var(--gradient-hover);
+                    
+                }
+
+    .contact-list {
+        display: block;
+        opacity: 1;
+        flex-direction: column;
+        position: fixed;
+        z-index: 900;
+        bottom: 35px;
+        width: 500px;
+        height: 500px;
+        transform: translate(-300px);
+        background-color: var(--quinary-color);
+        padding: 10px;
+        transition: ease 0.3s;
+        touch-action: none;
+    }
+
+    .contact-list.show {
+        opacity: 1;
+        transform: translate(300px);
+        transition: ease 0.3s;
+        
+    }
+
+    .contact-H{
+        background-color: var(--headline-color);
+        display: flex;
+        border-top-right-radius: 10px;
+        justify-content: center;
+        justify-items: center;
+        font-weight: bolder;
+        font-size: 2rem;
+        padding: 2px;
+        }
+
+    .contact-H p{ 
+        margin-top: 5px;
+        margin-bottom: 5px;
+    }
+
+    .add-contact-btn{
+        border-style: none;
+        font-size: 0.75em;
+        font-weight: bolder;
+        transform: translateX(130px);   
+        /*margin: 1%;*/
+        max-width: 100px;
+    }
+
+    .search-name-obj{
+        width: 300px;
+    }
+    .adduser-form{
+        display: none;
+        position: absolute;
+        z-index: 1002;
+        background-color: var(--quaternary-color);
+        width: 499px;
+        height: 500px;
+        padding: 1px;
+    }
+
+    .adduser-form.show{
+        display: block;
+    }
+
+    .search-contact input[type="text"]{
+        background-color: white;
+        width: 494px;
+        border: 1px solid lightgray;
+        height: 20px;
+        border-radius: 5px;
+    }
+    .search-user-list{
+        width: 100%;
+        overflow-y: auto;
+    }
+
+    .search-user-obj{
+        display: flex;
+        background-color: var(--senary-color);
+        padding: 10px;
+        margin-top: 5%;
+        height: 40px;
+    }
+
+
+    .contact-spc{
+        border-bottom-right-radius: 20px;
+        background-color: white;
+        height :90%;
+        padding: 15px;
+        overflow: auto;
+    }
+
+
+
+    .contact-card{
+        background-color: white;
+        display: flex;
+        padding: 10px;
+        margin-bottom: 5%;
+    }
+
+    .notif-dongle{
+        display: none ;
+        background-color: var(--primary-color);
+        width: 20px;
+        height: 20px;
+        transform: translateX(440px) translateY(-10px);
+    }
+
+    .notif-dongle.show{
+        display: block ;
+        background-color: var(--primary-color);
+        width: 20px;
+        height: 20px;
+        transform: translateX(440px) translateY(-10px);
+    }   
+
+    .contact-name{
+        font-weight: bold;
+        border-bottom: 2px solid black;
+        width: auto;
+    }
+
+    .contact-lst-msg{
+        width: 350px;
+        word-wrap:break-word;
+    }
+
+    .contact-icon{
+        margin-left: auto;
+    }
+
+    .contact-icon-img{
+        width: 50px ;
+        height: 50px ;
+    }
+
+    /* ######## footer ########*/
+
+    .foot {
+        display: flex;
+        position: fixed;
+        z-index: 1000;
+        bottom: 0px;
+        left: 0px;
+        width: 100vw;
+        height: 30px;
+        border-top: 3px solid white;
+        background-color: var(--quinary-color);
+        color: black;
+        font-weight: bold;
+        padding: 2px;
+    }
+
+    .foot-sup{
+        display: flex;
+        padding: 1px;
+        margin-left: 70%;
+    }
+    .foot-sup p {
+        display: flex;
+        margin-top: 0;
+        width: 100px;
+        margin-right: 5%;
+        color: black;
+    }
+
+    .foot p {
+        
+        margin-top: 0;
+        margin-left: 0%;
+        font-size: 1rem;
+
+    }
+
+    @media (max-width: 768px){
+
+    }
+    @media (min-width: 768px) and (max-width: 1024px){
+        
+    }
+    }

@@ -1,11 +1,178 @@
 @import url('../variable.css');
-    body {
+
+@media (max-width:768px) {
+    .view-notice{
+        display: block;
+        position: fixed;
+        width: 100vw;
+        height: 100vh;
+        padding:10px;
+        z-index: 10009;
+        background-color: var(--senary-color);
+        font-size: 2rem;
+        font-weight: bold;
+        touch-action: none;
+        transform: translateX(-2%) translateY(-0%);
+    }
+     .content{display: none;}
+}
+
+@media (min-width: 414px) {
+
+        body {
         background-color: var(--tertiary-color);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     }
 
     .head-clr {
         background-color: var(--primary-color);
     }
+
+    .hd-font {
+        font-style: normal;
+        font-family: sans-serif;
+    }
+
+    
+    .li-i{
+        display: block;
+        margin-top: 5%;
+    } 
+
+
+    /*############## Card radius ###################*/
+    .crb-F {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+    }
+    .crb-H {
+        border-top-left-radius: 0em;
+        border-top-right-radius: 0em;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+
+    }
+    .crb-HT {
+    border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0em;
+        border-bottom-right-radius: 0em;    
+    }
+
+    .crb-sd-l {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 0em;    
+    }
+
+    .crb-sd-r {
+        border-top-left-radius: 0em;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0em;
+        border-bottom-right-radius: 20px;
+    }
+
+    .circle{
+        border-top-left-radius: 100%;
+        border-top-right-radius: 100%;
+        border-bottom-left-radius: 100%;
+        border-bottom-right-radius: 100%;
+    }
+/*############ custom font styles ############*/    
+    .mn-font1 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #2b313d;
+    }
+
+    .head-font {
+        color: black;
+    }
+
+    .mt-font{
+        color: black;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+ /* ############# Box Shadow General ############# */
+    .b-shad-gen{
+        box-shadow: 0 0 5px 1px rgb(175, 173, 175);
+    }
+
+/* ############# Border Style General ############# */
+    .bdr-style {
+        border: 2px solid rgb(206, 200, 207);
+    }
+
+    .bdr-style-top-r{
+        border-top: 3px solid rgb(206, 200, 207);
+        border-right: 3px solid rgb(206, 200, 207) ;
+    }
+
+    .bdr-active {
+        border: 2px solid rgb(206, 200, 207);
+        transition: ease 0.3s;
+    }
+    .bdr-active:hover{
+        box-shadow: 0 0 5px 1px rgb(206, 200, 207) ;
+        transition: ease 0.3s;
+    }
+
+/*######### Main container styling #########*/
+.main-con{
+    display: block;
+    margin: 2%;
+    background-color: var(--quinary-color);
+    padding: 10px;
+}
+
+/*######## misc ##############*/
+
+.head-clr {
+    background-color: var(--headline-color);
+}
+
+.title-card {
+                display: block;
+                margin-left: 2vw;
+                margin-bottom: 2%;
+                transform: translatey(8vh);
+                font-size: 1.2rem;
+                font-weight: bold;
+                color: var(--headline-color);
+                text-decoration: underline;
+            }
+
+}
+
+/*########################################## fesktop ###########################################*/
+
+@media (min-width: 786px) {
+
+    
+        body {
+        background-color: var(--tertiary-color);
+        font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    }
+
+    .view-notice{
+        display: none;
+        background-color: red;
+    }
+
+    .head-clr {
+        background-color: var(--primary-color);
+    }
+
+    .hd-font {
+        font-style: normal;
+        font-family: sans-serif;
+    }
+
     .content {
         padding: 0.1%;
         display: block;
@@ -21,32 +188,109 @@
 
     /*############## Card radius ###################*/
     .crb-F {
-        border-top-left-radius: 1vw;
-        border-top-right-radius: 1vw;
-        border-bottom-left-radius: 1vw;
-        border-bottom-right-radius: 1vw;
+        border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
     }
     .crb-H {
         border-top-left-radius: 0em;
         border-top-right-radius: 0em;
-        border-bottom-left-radius: 2vw;
-        border-bottom-right-radius: 2vw;
-    
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 20px;
+
     }
     .crb-HT {
-    border-top-left-radius: 2vw;
-        border-top-right-radius: 2vw;
+    border-top-left-radius: 20px;
+        border-top-right-radius: 20px;
         border-bottom-left-radius: 0em;
-        border-bottom-right-radius: 0em;
-    
+        border-bottom-right-radius: 0em;    
     }
 
-@media (min-width: 1024px) {
+    .crb-sd-l {
+        border-top-left-radius: 20px;
+        border-top-right-radius: 0px;
+        border-bottom-left-radius: 20px;
+        border-bottom-right-radius: 0em;    
+    }
 
-}
-@media (max-width: 768px){
+    .crb-sd-r {
+        border-top-left-radius: 0em;
+        border-top-right-radius: 20px;
+        border-bottom-left-radius: 0em;
+        border-bottom-right-radius: 20px;
+    }
 
+    .circle{
+        border-top-left-radius: 100%;
+        border-top-right-radius: 100%;
+        border-bottom-left-radius: 100%;
+        border-bottom-right-radius: 100%;
+    }
+/*############ custom font styles ############*/    
+    .mn-font1 {
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: #2b313d;
+    }
+
+    .head-font {
+        color: black;
+    }
+
+    .mt-font{
+        color: black;
+        font-size: 2rem;
+        font-weight: bold;
+    }
+
+ /* ############# Box Shadow General ############# */
+    .b-shad-gen{
+        box-shadow: 0 0 5px 1px rgb(175, 173, 175);
+    }
+
+/* ############# Border Style General ############# */
+    .bdr-style {
+        border: 2px solid rgb(206, 200, 207);
+    }
+
+    .bdr-style-top-r{
+        border-top: 3px solid rgb(206, 200, 207);
+        border-right: 3px solid rgb(206, 200, 207) ;
+    }
+
+    .bdr-active {
+        border: 2px solid rgb(206, 200, 207);
+        transition: ease 0.3s;
+    }
+    .bdr-active:hover{
+        box-shadow: 0 0 5px 1px rgb(206, 200, 207) ;
+        transition: ease 0.3s;
+    }
+
+/*######### Main container styling #########*/
+.main-con{
+    display: block;
+    margin: 2%;
+    background-color: var(--quinary-color);
+    padding: 10px;
 }
-@media (min-width: 768px) and (max-width: 1024px){
-    
+
+/*######## misc ##############*/
+
+.head-clr {
+    background-color: var(--headline-color);
+}
+
+.title-card {
+                display: block;
+                margin-left: 2vw;
+                margin-top: 2vh;
+                margin-bottom: 2%;
+                 transform: translatey(0vh);
+                font-size: 2rem;
+                font-weight: bold;
+                color: var(--headline-color);
+                text-decoration: underline;
+            }
 }

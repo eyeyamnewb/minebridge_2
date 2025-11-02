@@ -1,4 +1,9 @@
 Django
+django-sslserver
+channels
+channels-redis
+python-dotenv
+daphne
 aif360
 plotly
 asgiref
@@ -6,6 +11,9 @@ cachetools
 certifi
 chardet
 charset-normalizer
+ffmpeg-python
+gunicorn
+google-genai
 google-api-core
 google-api-python-client
 google-auth
@@ -13,6 +21,8 @@ google-auth-httplib2
 google-auth-oauthlib
 googleapis-common-protos
 httplib2
+hume
+hume["microphone"]
 idna
 mysqlclient
 oauthlib
@@ -31,6 +41,9 @@ rsa
 setuptools
 sqlparse
 tzdata
+tensorflow
+torch
 uritemplate
 urllib3
+websockets
 whitenoise

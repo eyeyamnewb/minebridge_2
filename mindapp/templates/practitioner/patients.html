@@ -5,12 +5,22 @@
 {%block content %}
 {%comment%} page for patient health stats,details and updates{%endcomment%}
 <link rel="stylesheet" href="{% static 'doctor/task-form.css' %}">
-<div class="Ppg-con crb-F">
-    <div class="Ppg-box crb-F">
+<link rel="stylesheet" href="{% static 'general/button-stuff.css' %}">
+<div class="main-con crb-F">
+    <div class="title-card">
+        Patients
+    </div>
+    <div class="Ppg-box b-shad-gen crb-F">
         {%comment%} headspace {%endcomment%}
-        <div class="Ppg-h crb-HT">
-            <header>PATIENT STATUS </header>
+        <div class="Ppg-h head-clr bdr-style crb-HT">
+            <header style="display: flex;">PATIENT STATUS
+
+            </header>
+
+             <button class="btn inf-btn crb-F" onclick="meninfo()" > <p>mental updates </p></button>
+                <button class="btn inf-btn crb-F" onclick="taskAssign()"> <p>task</p></button>
         </div>
+        
         <div class="Ppg-b crb-H">
             <table class="Ppg-tbl crb-F">
                 <thead>
@@ -44,13 +54,7 @@
         
     </div>
 
-<div class="pat-btn-stuff" style="position: fixed;">
-    <button class=" btn men-inf-btn" onclick="meninfo()"
-     style="font-size: 1.2em;
-    ">mental updates </button>
-    <button class="btn task-pat-btn" onclick="taskAssign()" style="
-    font-size: 1.2em;">task</button>
-</div>
+
 </div>
 
 <div class="mdl-pat-form crb-F" id="mdl-pat-form">
@@ -60,16 +64,17 @@
         font-size: 1.2vw; cursor: pointer;" onclick="closeform()">x</button>
     </div>
     <div class="men-inform" id="men-informa" style=" margin: 10%; font-size: 1vw;">
-        <form method="post" action="{%url 'mental_update' %}" class="men-inform-form">
+        <form method="post" action="{%url 'mindapp:mental_update' %}" class="men-inform-form">
             {%csrf_token%}
-            {{mental_info_form}}
-            <button type="submit" class="btn men-btn crb-F">update</button>
+            {{mental_info_form.as_p}}
+            
         </form>
+        <button type="submit" class="btn men-btn crb-F">update</button>
     </div>
     <div class="task-pat-form" id="task-pat-form" style="margin: 5%; ">
-        <form method="post" action="{%url 'assign_task' %}" >
+        <form method="post" action="{%url 'mindapp:assign_task' %}" >
             {%csrf_token%}
-           {{task_form}}
+           {{task_form.as_p}}
            <button type="submit" class="btn tsk-btn crb-F">assign</button>
         </form>
     </div>

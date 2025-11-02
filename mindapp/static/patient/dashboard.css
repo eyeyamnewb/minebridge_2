@@ -1,9 +1,9 @@
 
 @import url('../variable.css');
 
-@media (min-width: 1024px) {
+@media (max-width: 414px) {
      .user-greet {
-        display: block;
+        display: none;
         margin-left: 2vw;
         margin-top: 2vh;
         font-size: var(--bigfont-size);
@@ -111,6 +111,243 @@
         margin-top: 0%;
 
     }
+
+}
+
+/*######################################### desktop ################################ */
+@media (min-width: 1024px) {
+     .user-greet {
+        display: block;
+        margin-left: 2vw;
+        margin-top: 2vh;
+        font-size: var(--bigfont-size);
+        color: var(--secondary-color);
+        text-decoration: underline;
+    }
+    
+          
+            .dash-box{
+                background-color: var(--senary-color);
+                width: 96%;
+                margin-left: 2%;
+                padding: 1px;
+                margin-top: 2%;
+                margin-bottom: 2%;
+            }
+            
+            /*---------emotion mood box thingy -----*/
+            
+            .emo{
+                display: block;
+                background-color: var(--quinary-color);
+                padding: 1px;
+                width: 96%;
+                margin-left: 2%;
+                margin-bottom: 2%;
+            }
+            .emo-header {
+                font-size: 2vw;
+                font-weight: bold;
+                padding: 1px;
+            }
+
+            .emo-header header{
+                margin: 1%
+            }
+
+            .emo-frm{
+                /*background-color: green;*/
+                height: 20vh;
+                margin-top: 2%;
+                margin-left:5%; 
+                width: 85%;
+                font-size: 1.5vw;
+                font-weight: bold;
+                padding: 1px;
+            }
+            
+            
+            /*---------------- main dashboard item ------------------*/
+            .dashP-i{display: flex;
+            /*background-color: red;*/
+            width:96% ;
+            margin-left: 2%;
+            padding: 1px;
+            }
+
+            /*dashbaord task item container*/
+            .task-con {
+                display: block;
+                padding: 10px;
+                width: 80%;
+                height: 90%;
+    ;
+            }
+
+            .task-item {
+                display: flex; /* this is like the box thingy */
+                /*background-color: gray;*/
+            }
+
+            .tas {
+                display: block;
+                width: 50%;
+                height: 70vh;
+                background-color: var(--quinary-color);
+            }
+
+            .tas-i{
+                overflow: auto;
+                height: 85%;
+                /*background-color: yellow;*/
+            }
+            .tas-il {
+                display: block;
+                background-color: var(--quinary-color);
+                border-color: var(--primary-color);
+                border-style: solid;
+                border-width: 4px;
+                width: 90%; 
+                margin-left: 5%;
+                margin-top:5%;
+                padding: 1px;
+                transition: ease 0.3s;
+            }
+
+            .tas-il:hover {
+                display: block;
+                background-color: var(--quaternary-color);
+                /*border-color: var(--primary-color);
+                border-style: solid;
+                border-width: 4px;*/
+                width: 90%; 
+                margin-left: 5%;
+                margin-top:5%;
+                padding: 1px;
+            }
+
+            .tasp-frm{
+                /*background-color: red;*/
+                margin-left: 5%;
+                margin-bottom: 5%;
+                padding: 1px;
+            }
+
+            .p-task {
+                margin-left: 1vw;
+            }
+
+            .tas-div {
+            display: block;
+            background-color: var(--secondary-color);
+            width: 80%;
+            height: 5px;
+            margin-top: -3%;
+            margin-left: 10%;
+            }
+
+            .dtbutton{
+                margin-left: 70%;   
+                height: 2vw;
+                
+            }
+            /* for empty task*/
+            .mt-tas{
+                margin-left: 25%;
+                margin-top: 50%;
+            }
+
+            /*-------------callendar stuff-------------------*/
+            /*calendar container*/
+            .cal-con{
+                display: block;
+                width: 31.5vw;
+                padding:10px ; 
+            }
+            
+            /*calendar item */
+            .cal-i {
+                width: 98%;
+                height: 100%;
+                background-color: var(--quinary-color);
+                margin-top: -0%;
+                padding: 1px;
+            }
+            
+            /*calendar header*/
+            .cal-head{
+                margin-top: -3%;
+                margin-left: 10%;
+                margin-bottom: 6%;
+                
+            }
+
+            .g-cal{
+                display: block;
+                height: 80%;
+                margin-left: 0%;
+                margin-top: 10%;
+
+            }
+
+            .bsc-cal {
+                /*background-color: green;*/
+                font-size: 1.5rem;
+                width: 90%;
+                margin-top: 10%;
+                margin-left: 5%;
+                /*padding: 1px;*/
+                border-style: solid;
+                border-color: gray;
+                transition: ease-in-out 0.3s;
+            }
+
+            .bsc-cal td, .bsc-cal th {
+            text-align: center;
+            vertical-align: middle;
+            }
+
+            .cal-nav {
+                /*padding: 4px;*/
+                font-weight: bold;
+            }
+            .cal-nav header{
+                margin-left: 5%;
+                padding: 10px;
+            }
+            .cal-nav header a{
+                color: black;
+                transition:ease-in 0.3s;
+                margin-left: 5%;
+                margin-right: 5%;
+            }
+
+            .cal-nav header a:hover{
+                color: white;
+            }
+
+            .month{
+                /*background-color: red;*/
+                width: 100%;
+                height: 100%;
+                padding: 1px;
+            }
+
+            .month tr td{
+                /*background-color: pink;*/
+                height: 3vw;
+                align-items: center;    
+            }
+            .dsh-today{
+                border-color: #000000;
+                border-style: solid;
+                
+            }
+            .dsh-appt{
+                background-color: var(--primary-color);
+            }
+
+
 
 }
 @media (max-width: 768px){

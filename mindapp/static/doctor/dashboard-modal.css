@@ -1,0 +1,19 @@
+@import url('../variable.css');
+@media (min-width: 768px) {
+    .dsh-appt-modal-con {
+        display: block;
+        position: fixed;
+        z-index: 1000;
+        height: auto;
+        width: auto;
+        transform: translateX(-40vw) translateY(-40vh);
+        background-color: var(--quinary-color);
+        padding: 20px;
+        transition: ease 0.3s;
+    }
+
+    .dsh-appt-modal-con.show{
+        transform: translateX(30vw) translateY(-80vh);
+        transition: ease 0.3s;
+    }
+}

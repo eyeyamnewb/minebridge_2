@@ -8,19 +8,20 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'patient/desktop.css' %}">
     <link rel="stylesheet" href="{% static 'general/detail-fill.css' %}">
+    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
     <link rel="stylesheet" href="{% static 'mobile.css' %}">
     <link rel="stylesheet" href="{% static 'tablet.css' %}">
 </head>
 
 <body style="padding: 1px;">
-    <div class="detail-form-box crb-F">
-        <div class="detail-header crb-HT">
+    <div class="detail-form-box b-shad-gen crb-F">
+        <div class="detail-header bdr-style head-clr crb-HT">
             <header>
                 details
             </header>
         </div>
         <div class="detail-body">
-            <form method="post" action="{%url 'details'%}">
+            <form method="post" action="{%url 'mindapp:details'%}">
                 {%csrf_token%}
                 {{form}}
                 <div class="detail-sub-box crb-F">

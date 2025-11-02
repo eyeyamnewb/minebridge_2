@@ -10,21 +10,23 @@
     <link rel="stylesheet" href="{% static 'mobile.css' %}">
     <link rel="stylesheet" href="{% static 'tablet.css' %}">
     <link rel="stylesheet" href="{% static 'general/login.css' %}">
+    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
+    <link rel="stylesheet" href="{% static 'general/button-stuff.css' %}">
 </head>
 <body>
 
-    <div class="login-box crb-F">
-        <div class="login-head crb-HT">
+    <div class="login-box b-shad-gen crb-F">
+        <div class="login-head bdr-style crb-HT">
             <header>Login</header>
         </div>
         <div class="login-body">
-            <form method="post" action="{% url 'login' %}">
+            <form method="post" action="{% url 'mindapp:login' %}">
                 <!-- Ensure the form submits to the correct URL -->
                 {% csrf_token %}
                 {{ form.as_p }}
                 <div class="login-btn" style="display: flex;" >
-                    <button class="login-btnM crb-F" type="submit">Login</button>
-                    <button class="login-btnM crb-F"><a href="#under construction">Forgot password?</a></button>
+                    <button class="login-btnM btn crb-F" type="submit">Login</button>
+                    <button class="login-btnM btn crb-F"><a href="#under construction">Forgot password?</a></button>
                 </div>
                 
             </form>

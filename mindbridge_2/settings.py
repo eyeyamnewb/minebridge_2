@@ -13,9 +13,13 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 from decouple import config
 from pathlib import Path
 import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
@@ -25,14 +29,22 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = config('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+debug_mode = config("DEBUG")
 
-ALLOWED_HOSTS = []
+if debug_mode == "False":
+    DEBUG = False
+elif debug_mode == "True":
+    DEBUG = debug_mode
+else:
+    DEBUG = debug_mode
+
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'daphne',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,6 +53,9 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "mindapp",
     "whitenoise.runserver_nostatic",
+    "sslserver",
+    'channels',
+
 ]
 
 MIDDLEWARE = [
@@ -67,13 +82,23 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                'mindapp.context_processor.staff_contacts',
+                'mindapp.context_processor.fetch_current_contact',
+                'mindapp.context_processor.fetch_message',
             ],
         },
     },
 ]
 
+
+ASGI_APPLICATION = "mindbridge_2.asgi.application"
 WSGI_APPLICATION = "mindbridge_2.wsgi.application"
 
+CHANNEL_LAYERS = {
+    'default': {
+        'BACKEND': 'channels.layers.InMemoryChannelLayer',
+    },
+}
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases
@@ -81,9 +106,16 @@ WSGI_APPLICATION = "mindbridge_2.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": BASE_DIR / "db.sqlite3",
+        "NAME": "db.sqlite3",
     }
 }
+
+#TORTOISE_INIT = {
+##    "db_url": "sqlite://db.sqlite3.tortoise",
+ #   "modules" : {
+ #       "models": ["mindapp.tortoise_models"]  
+ #    }
+#}
 
 # Uncomment the following lines to use MySQL as your database
 # DATABASES = {
@@ -133,7 +165,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
 STATIC_URL = "static/"
-STATICFILES_ROOT = BASE_DIR / "staticfiles"
+STATICFILES_ROOT = "staticfiles"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
@@ -147,3 +179,11 @@ SESSION_COOKIE_AGE = 60 * 60 * 24 * 30  # 30 days
 SESSION_EXPIRE_AT_BROWSER_CLOSE = False
 #for session cookie
 SESSION_COOKIE_SECURE = True
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'mindbridge.bwn@gmail.com'
+EMAIL_HOST_PASSWORD = config('APP_PASS')
+DEFAULT_FROM_EMAIL = 'no-reply@mindbridge.com'

@@ -7,24 +7,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Patient Base</title>
     {%comment%} style for general start 
-    <link rel="stylesheet" href="{% static 'general/navigation-bar.css' %}">
-    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
     <link rel="stylesheet" href="{% static 'general/minor-adjustment.css' %}">
-    <link rel="stylesheet" href="{% static 'general/form-control.css' %}"> 
+ 
     style for general end 
     <!--<link rel="stylesheet" href="{% static 'patient/dashboard.css' %}">-->
     <link rel="stylesheet" href="{% static 'mobile.css' %}">
     <link rel="stylesheet" href="{% static 'tablet.css' %}"> {%endcomment%}
+    <link rel="stylesheet" href="{% static 'patient/dashboard.css' %}">
     <link rel="stylesheet" href="{% static 'patient/desktop.css' %}">
     <link rel="stylesheet" href="{% static 'general/form-control.css' %}">
     <link rel="stylesheet" href="{% static 'general/button-stuff.css' %}">
     <link rel="stylesheet" href="{% static 'general/message_modal.css' %}">
-
+    <link rel="stylesheet" href="{% static 'general/navigation-bar.css' %}">
+    <link rel="stylesheet" href="{% static 'general/shapes and stuff.css' %}">
+    <link rel="stylesheet" href="{% static 'general/body content wrapper.css' %}">
 
 </head>
-<body>
+<script src="{% static 'scripts/web-socket/message.js' %}"></script>
+<script>
+    
+    
 
-    <div class="burger-btn-box">
+    document.addEventListener("DOMContentLoaded", function(){
+
+            const noti = new WebSocket(notified_user());
+        
+            noti.onmessage = function(e){
+                const data = JSON.parse(e.data);
+
+                if (data.type === 'new_message'){
+                    const contacted_Card = document.querySelector(`.contact-card[data-user_id='${data.from_user_id}']`);
+                    const notif_dongle = document.querySelector(`.notif-dongle[data-notified_user_id='${data.from_user_id}']`);
+                    if (contacted_Card){
+                        notif_dongle.classList.add('show');
+
+                    }
+                }
+            };
+
+            noti.onclose = function(e){
+                console.error('hello?')
+            };
+    });
+</script>
+<body>
+    <div class="view-notice" > hello there this place is not available yet while the whole product is in beta, but will provide them with each version update</div>
+    <div class="burger-btn-box" onclick="burger()">
         <div class="BURG-BODY">
             <span></span>
             <span></span>
@@ -34,54 +62,224 @@
     <nav class="navi" id="navicon">
         
         <ul class="nav-li">
-            <div class="port-crd">PATIENT PORTAL</div>
-            <li class="li-i"><a href="{% url 'patient_dashboard' %}">Dashboard</a></li>
-            <li class="li-i"><a href="{% url 'patient_task' %}">Tasks</a></li>
-            <li class="li-i"><a href="{% url 'patient_setting' %}">Settings</a></li>
-            <li class="li-i"><a href="{% url 'patient_appointment' %}">Appointments</a></li>
-            <li class="li-i"><a href="{% url 'logout' %}">Logout</a></li>
-        </ul>
-
-         <ul class="nav-li-icon" style="display:none;">
-            <div class="port-crd">PATIENT PORTAL</div>
-            <li class="li-i"><a href="{% url 'patient_dashboard' %}">Dashboard</a></li>
-            <li class="li-i"><a href="{% url 'patient_task' %}">Tasks</a></li>
-            <li class="li-i"><a href="{% url 'patient_setting' %}">Settings</a></li>
-            <li class="li-i"><a href="{% url 'patient_appointment' %}">Appointments</a></li>
-            <li class="li-i"><a href="{% url 'logout' %}">Logout</a></li>
+            <div class="logo-img">
+                <img class="navm-icon" src="https://drive.google.com/thumbnail?id=1CfquazMDphy-Sm72CcdsXuNPg7rf1sAL" alt="minebridge_dark-bridge icon"> 
+            </div>
+            <div class="port-crd">MINDBRIDGE</div>
+            <li class="li-i"><a href="{% url 'mindapp:patient_dashboard' %}">Dashboard</a></li>
+            <li class="li-i"><a href="{% url 'mindapp:patient_task' %}">Tasks</a></li>
+            <li class="li-i"><a href="{% url 'mindapp:patient_appointment' %}">Appointments</a></li>
+            <li class="li-i"><a href="{% url 'mindapp:patient_setting' %}">Settings</a></li>
+            <li class="li-i"><a href="{% url 'mindapp:logout' %}">Logout</a></li>
         </ul>
          
     </nav>
-         <div class="msg-con" onclick="openModal()"> <p>chat</p> </div>
-     <div class="msg-modal-box">
-        <div class="close-chat" onclick="closeModal()"><p>X</p></div>
-        <div class="under-construction">
-            <p>Chat feature is under construction</p>
-            <p>We are working very hard to bring this feature to you soon!</p>
-            <div class="worker">
-                <img class="worker-icon" src="https://icon-library.com/images/under-construction-icon-png/under-construction-icon-png-27.jpg" alt="Worker">
-            </div>
+    <div class="contact-list crb-sd-r bdr-style-top-r">
+        <div class="contact-H">
+            <p>Contacts</p>
         </div>
+        <div class="contact-spc ">
+            {% for exist_contact in exist_contact_list %}
+            
+            <div class="contact-card bdr-active crb-F" 
+                data-user_id="{{exist_contact.contact.who.id }}"
+                data-request_user = "{{ request.user.id }}"
+                data-request_username = "{{ request.user.username }}" 
+                data-contact_fullname="{{exist_contact.contact.full_name}}"
+                data-contact_username="{{exist_contact.contact.who.username}}"
+                >
+                
+                <div class="notif-dongle circle"
+                data-user_id="{{exist_contact.contact.who.id }}"></div>
+                
+                <div class="contact-txt-wrap">
+                    <div class="contact-name">
+                        {{ exist_contact.contact.full_name }}
+                        {{exist_contact.contact.who.username}}
+                    </div>
+                    <div class="contact-lst-msg">
+                        
+                    </div>
+                </div>
+                
+                <div class="contact-icon">
+                    <img class="contact-icon-img" src="https://img.freepik.com/premium-vector/user-icon-round-grey-icon_1076610-44912.jpg"  alt=" title">
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+
+         <div class="msg-con head-clr crb-F" > <p>chat</p> </div>
+         <footer class=" foot ">
+             
+            <p>
+                powered by <a href="https://www.minebridge.com" target="_blank" style="text-decoration: underline; color: black;">minebridge</a> | &copy; 2024 minebridge
+            </p>
+
+            <div class="foot-sup">
+                <p >contacts us</p>
+                <p><a href="{% url 'mindapp:feedback' %}"> feedback</a></p>
+            </div>
+         </footer>
+        
+         <div class="msg-modal-box crb-F bdr-style mn-font1">
+            <div class="close-chat" onclick="closeModal()"><p>X</p></div>
+                {% comment %} this will be the chat box, for now it is just a placeholder {% endcomment %}
+            <div class="doc-name-spc ">
+                {% comment %} contacted doctor name will go here {% endcomment %}
+                <p style="text-decoration: underline;">
+                    <span id="contact_username"></span>
+                </p>
+            </div>
+        
+            <div class="txt-con mn-font1 crb-F" id="chat_log">
+                
+            </div>
+        
+            <div class="texter-spc">    
+                <form class="txtn-field" id="message_form" 
+                    x-cloak
+                    @submit.prevent="submit"
+                    x-data="{
+                        state: 'composing',
+                        errors: {},
+                        submit(){
+
+                            to_send();
+
+                        }
+                    }"
+                    action="">
+                    {% csrf_token %}
+                <textarea type="text" id="message_input" placeholder="Type your message here..." x-ref="messageInput"></textarea>
+                    <button class="btn send-btn crb-F" id="send_message" type="submit" >Send</button>
+                </form>
+            </div>
+         </div>
+
+        {% comment %} it end here, will be working on it once the ai framework is properly build {% endcomment %}
 </div>
     <!-- Content goes here -->
     <div class="content">
         {% block content %}
-        {% endblock %}
+        {% endblock %} </div>
 </body>
+
+
 <script>
-
+    const contacts = document.querySelector('.contact-list');
+    const chat_button = document.querySelector('.msg-con');
     const msg_modal_box = document.querySelector('.msg-modal-box');
+    const mobile_navi = document.querySelector('.navi');
+    const burger_btn = document.querySelector(".burger-btn-box");    
 
-    function closeModal() {
-        msg_modal_box.classList.remove('show');
-    }
+    //--------- messasge variable
+    const contact_msg_card = document.querySelectorAll(".contact-card") 
+    const contact_username_display = document.getElementById("contact_username")
+    const room_id_input = document.getElementById("room_id_in");
+    const text_content = document.getElementById('message_input');
+    const send_text = document.getElementById('send_message');
+    const chat_log = document.getElementById("chat_log");
+    const message_form = document.getElementById("message_form");
+    
+
+    //--------- just toggle some ui for contact and message box
     function openModal() {
         msg_modal_box.classList.add('show');
     }
-    function opennav(){
-        document.getElementById('navicon').classList.add('show')
+
+    function closeModal(){
+        msg_modal_box.classList.remove('show');
     }
 
-    
+    function togglecontact(){
+    contacts.classList.toggle('show');
+    }
+
+    function burger(){
+        burger_btn.classList.toggle('rotate');
+        mobile_navi.classList.toggle('show');
+        chat_button.classList.toggle('show');
+    }
+
+    chat_button.addEventListener('click', togglecontact); 
+</script>
+
+{%comment%} alpine js for form submit handling {%endcomment%}
+<script
+      defer=""
+      src="https://cdn.jsdelivr.net/npm/alpinejs@3.12.3/dist/cdn.min.js"
+    ></script>
+
+<script>
+
+    //----------contact name dataset for contact message
+         let active_msg_sock = null;
+    let current_room_id = null;
+    let user_a =null;
+    let user_b = null;
+    let username_a = null;
+    let username_b = null;
+        
+        contact_msg_card.forEach(function(btn){
+            btn.addEventListener('click',function(){
+
+                if(active_msg_sock){
+                    active_msg_sock.close();
+                }
+
+                chat_log.innerHTML = '';
+
+
+                contact_username_display.textContent = btn.dataset.contact_username;
+                
+                user_a = btn.dataset.request_user;
+                user_b = btn.dataset.user_id;
+                
+                msg_modal_box.classList.add('show');
+                
+                username_a = btn.dataset.request_username ;
+                username_b = btn.dataset.contact_username;
+
+                checkroom(user_a,user_b,function(room_id) {
+                    if (room_id_input){
+                    //room_id_input.textContent ='room' + room_id;
+                        room_id_input.dataset.roomID = room_id;
+                    }
+
+                    current_room_id = room_id;
+                    console.log('passing and calling room now: ' + current_room_id);
+
+                    to_load_message(current_room_id,user_a,chat_log);
+                    active_msg_sock = established_connection(current_room_id,user_a,user_b,chat_log);
+                });
+            });
+        });
+
+        function to_send(){
+
+        const messageText = text_content.value;
+        if (messageText.trim() === '' )return;
+
+        if(active_msg_sock && active_msg_sock.readyState === WebSocket.OPEN){
+            active_msg_sock.send(JSON.stringify({
+                'message': messageText,
+            }));
+
+            text_content.value = '';
+        } else {
+            console.error('nom eesage send, socket not connected')
+        }
+
+        //message_input(current_room_id,text_content.value,user_a,user_b,chat_log);
+        
+    };
+        
+
+
+   
 </script>
 </html>
+
+

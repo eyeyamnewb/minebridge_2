@@ -3,15 +3,20 @@
 <!-- Content for dashboard page -->
 {% block content %}
 <link rel="stylesheet" href="{% static 'doctor/patient-form.css' %}">
-<div class="mdsh-con crb-F">
+<link rel="stylesheet" href="{% static 'doctor/dashboard-modal.css' %}">
+<!--<link rel="stylesheet" href="{% static 'doctor/dashboard.css' %}">-->
+<div class="main-con crb-F">
+    <div class="title-card">
+        welcome, Dr. {{ user.first_name }}
+    </div>
     
      <div class=" dsh-tas-frm crb-F" id="task-assign-dash">
-        <form method="post" action="{%url 'assign_task' %}" class="ass-tas-frm">
+        <form method="post" action="{%url 'mindapp:assign_task' %}" class="ass-tas-frm">
             {% csrf_token %}
             {{form}}
             <div style="display: flex;">
                  <button type="submit" class="btn dsh-ass-btn crb-F">submit</buttons>  
-                <button class="btn dsh-ass-btn crb-F" style="margin-left:20% ;" onclick="closeAssignDsh()">close</button>  
+                <button class="btn dsh-ass-btn crb-F" type="button" style="margin-left:20% ;" onclick="closeAssignDsh()">close</button>  
             </div> 
            
         </form>    
@@ -21,11 +26,11 @@
 
     </div>
 
-    <div class="pat-li-con crb-F">
+    <div class="pat-li-con b-shad-gen crb-F">
         {%comment%} containter for list of patients{%endcomment%}
-        <div class="pdsh-con crb-HT" style="display: flex;">
+        <div class="pdsh-con bdr-style head-clr crb-HT" style="display: flex;">
             <header>PATIENT ONBOARD</header>
-             <div class="asgn-tas-btn" onclick="openAssignDsh()">+</div>
+             <div class="asgn-tas-btn " onclick="openAssignDsh()">+</div>
         
        
       
@@ -82,7 +87,7 @@
                         </tr>
                     {%endfor%}
                     </tbody>
-                </table>
+                    </table>
             <div class="pat-dtl-mdl-box crb-F" id="patient-modal" >
                 <div class="pat-dtl-cntn">
                     <h3 id="modal-name"></h3>
@@ -100,8 +105,8 @@
                             <p>latest mood: <span id="modal-mood"></span></p>
                         </div>
                     </div>
-                    
-                    <button onclick="detailclose()" class=" dsh-close-prac crb-F">Close</button>
+
+                    <button onclick="detailclose()" type="button" class=" dsh-close-prac crb-F">Close</button>
                 </div>
                     
             </div>
@@ -111,30 +116,34 @@
         
     </div>
     {%comment%} dashboard appointment containter {%endcomment%}
-    <div class="dsh-appt-con crb-F">
-        <div class="dsh-appt-h crb-HT">
+    <div class="dsh-appt-con b-shad-gen crb-F">
+        <div class="dsh-appt-h bdr-style  head-clr crb-HT">
             <header>APPOINTMENT OVERVIEW</header>
         </div>
         {%comment%} appointment content {%endcomment%}
         <div class="dsh-appt-cntn crb-H">
-            <div class="dappt-box crb-F">
+
+            <div class="dappt-box b-shad-gen crb-F">
                 <div class="dappt-h">today appointment</div>
                 <div class="dappt-div crb-F"></div>
                 <div class="dappt-li ">
                     {% for today in today_appointments %}  
-                    <div class="dappt-li-box crb-F">
-                        <p>{{today.who.who.full_name}}</p>
-                        <p>{{today.appointment_meeting_type}}</p>
-                        <p>{{today.appointment_type}}</p>
-                        <p>{{today.appointment_status}}</p>
+                    <div class="dappt-li-box b-shad-gen crb-F">
+                        <p>name:{{today.who.who.full_name}}</p>
                         <p>date: {{today.appointment_date}}.  time:{{today.appointment_date}}</p>
-                        <button class="btn">View Details</button>
+                        <button class="btn crb-F"
+    data-id="{{today.id}}"
+    data-name="{{today.who.who.full_name}}"
+    data-meeting="{{today.appointment_meeting_type}}"
+    data-type="{{today.appointment_type}}"
+    data-status="{{today.appointment_status}}"
+    data-date="{{today.appointment_date}}"
+    data-time="{{today.appointment_time}}"
+                                >View Details
+                        </button>
                     </div>
                      {%empty%}
-                    <p style="font-weight: bold;
-                    margin-top: 30%;
-                    margin-left: 15%;
-                    font-size: 3em;"> no appointments</p>
+                    <p class="dsh-empt-appt mpty-font"> no appointments</p>
                     {%endfor%}
 
                 </div>    
@@ -142,30 +151,60 @@
 
             {%comment%} here be upcoming {%endcomment%}
 
-            <div class="dappt-box crb-F">
+            <div class="dappt-box b-shad-gen crb-F">
                 <div class="dappt-h">upcoming appointment</div>
                 <div class="dappt-div crb-F"></div>
                 <div class="dappt-li ">
                     {% for x in upcoming_appointments %}  
-                    <div class="dappt-li-box crb-F">
-                        <p>{{x.who.who.full_name}}</p>
-                        <p>{{x.appointment_meeting_type}}</p>
-                        <p>{{x.appointment_type}}</p>
-                        <p>{{x.appointment_status}}</p>
+                    <div class="dappt-li-box b-shad-gen crb-F">
+                        <p> name: {{x.who.who.full_name}}</p>
                         <p>date: {{x.appointment_date}}.  time:{{x.appointment_date}}</p>
-                        <button class="btn">View Details</button>
+                        <button class="btn crb-F appt-view-details"
+                            data-id="{{x.id}}"
+                            data-name="{{x.who.who.full_name}}"
+                            data-meeting="{{x.appointment_meeting_type}}"
+                            data-type="{{x.appointment_type}}"
+                            data-status="{{x.appointment_status}}"
+                            data-date="{{x.appointment_date}}"
+                            data-time="{{x.appointment_time}}"
+                        >View Details</button>
                     </div>
                     {%empty%}
-                    <p style="font-weight: bold;
-                    margin-top: 25%;
-                    margin-left: 25%;
-                    font-size: 3em;"> no upcoming appointments</p>
+                    <p class="dsh-empt-appt mpty-font">no upcoming</p>
+                    <p  class="mpty-font"
+                    style="margin-top: -8%;">appointments</p>
                     {%endfor%}
                 </div>    
             </div>
         </div>
     </div>
+<div class="dsh-appt-modal-con b-shad-gen crb-F" id="appt-modal"> 
+        <div class="dsh-appt-modal-content">
+        <p style="text-decoration: underline;
+        font-size: 2em;
+        font-weight: bold;
+        margin-top: -3%;">Appointment Details</p>
+
+        <div>
+            <p><strong>Patient:</strong> <span id="appt-modal-name"></span></p>
+            <p><strong>Meeting Type:</strong> <span id="appt-modal-meeting"></span></p>
+            <p><strong>Type:</strong> <span id="appt-modal-type"></span></p>
+            <p><strong>Status:</strong> <span id="appt-modal-status"></span></p>
+            <div class="eh" style="display: flex;">
+                <p><strong>Date:</strong> <span id="appt-modal-date"></span></p>
+                <p style="margin-left: 10px;"><strong>Time:</strong> <span id="appt-modal-time"></span></p>
+            </div>
+            
+        </div>
+        <div style="margin-top:1em;">
+            <button class="btn crb-F appt-modal-btn" id="appt-complete-btn">Complete</button>
+            <button class="btn crb-F appt-modal-btn" onclick="closeApptModal()">Close</button>
+        </div>
+    </div>
 </div>
+</div>
+
+
 
 <script>
 document.querySelectorAll('.p-dtail-dsh').forEach(function(btn) {
@@ -198,6 +237,61 @@ function closeAssignDsh(){
     document.getElementById('task-assign-dash').classList.remove('show');
 };
 
+
+document.querySelectorAll('.appt-view-details').forEach(function(btn) {
+    btn.addEventListener('click', function() {
+        document.getElementById('appt-modal-name').textContent = btn.dataset.name;
+        document.getElementById('appt-modal-meeting').textContent = btn.dataset.meeting;
+        document.getElementById('appt-modal-type').textContent = btn.dataset.type;
+        document.getElementById('appt-modal-status').textContent = btn.dataset.status;
+        document.getElementById('appt-modal-date').textContent = btn.dataset.date;
+        document.getElementById('appt-modal-time').textContent = btn.dataset.time;
+        document.getElementById('appt-complete-btn').setAttribute('data-id', btn.dataset.id);
+        // Add the 'show' class to display the modal
+        document.getElementById('appt-modal').classList.add('show');
+    });
+});
+
+// Close modal
+function closeApptModal() {
+    document.getElementById('appt-modal').classList.remove('show');
+}
+
+// Mark as complete (AJAX example)
+document.getElementById('appt-complete-btn').addEventListener('click', function() {
+    const apptId = this.getAttribute('data-id');
+    fetch(`/complete-appointment/${apptId}/`, {
+        method: 'POST',
+        headers: {
+            'X-CSRFToken': getCookie('csrftoken')
+        }
+    })
+    .then(response => response.json())
+    .then(data => {
+        alert('Appointment marked as complete!');
+        closeApptModal();
+        location.reload(); // Optionally reload to update status
+    })
+    .catch(error => {
+        alert('Error completing appointment.');
+    });
+});
+
+// Helper to get CSRF token for Django
+function getCookie(name) {
+    let cookieValue = null;
+    if (document.cookie && document.cookie !== '') {
+        const cookies = document.cookie.split(';');
+        for (let i = 0; i < cookies.length; i++) {
+            const cookie = cookies[i].trim();
+            if (cookie.substring(0, name.length + 1) === (name + '=')) {
+                cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                break;
+            }
+        }
+    }
+    return cookieValue;
+}
 </script>
 {% endblock %}
 

@@ -46,11 +46,9 @@ textarea {
     position: fixed;
     transform: translateX(20vw) translateY(30vw);
     background-color: var(--senary-color);
-    box-shadow: 0 0 4px 4px gray;
     width: 30%;
-    height: 75%;
     transition: ease 0.3s;
-    padding: 1px;
+    padding: 20px;
     
 }
 
@@ -60,7 +58,6 @@ textarea {
     position: fixed;
     transform: translateX(20vw) translateY(-60vw);
     background-color: var(--senary-color);
-    box-shadow: 0 0 4px 4px gray;
     pointer-events: auto;
     
 }

@@ -52,25 +52,23 @@ label {
             margin:5%;
             margin-left: 20%;
             background-color: var(--quinary-color);
-            box-shadow: 0 0 4px 4px gray;
-            padding: 1px;
+            /*padding: 1px;*/
         }
+        
         .pw-cng-h{
-            background-image: var(--head-gradient);
-            margin-left: 0;
-            box-shadow: 0 0 4px 4px gray;
         }
         .pw-cng-h header{
             
             margin-left: 2%;
             font-size: var(--header-font-size);
             font-weight: bold;
+            padding: 1%;
         }
         
         .pw-frm{
             /*background-color: red;*/
             width: 90%;
-            margin:5%;
+            padding: 5%;
         }
 
 /*##################button fields #################*/
@@ -83,7 +81,6 @@ label {
 }
 .set-btn:hover {
     background-image: var(--head-gradient);
-    box-shadow: 0 0 4px 4px gray;
     transition: ease 0.1s;
 }
 }

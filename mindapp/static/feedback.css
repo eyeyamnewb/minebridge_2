@@ -1,0 +1,84 @@
+/* Mobile */
+@media (max-width: 414px) and (max-height: 812px) {
+    /* Add mobile-specific styles here */
+
+    .fdback-frm-main{
+        background-color: var(--quaternary-color);
+        width: 350px;
+        transform: translateX(5vw)translateY(10vh) ;
+    }
+
+    .fdback-header{
+        background-color: var(--primary-color);
+        justify-items: center;
+    }
+
+    .fdback-title{
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .fdback-frm{
+        padding: 2px;
+        margin-top: -20px;
+        margin-left: 3%;
+    }
+
+    .fdback-frm p input,
+    .fdback-frm p textarea{
+        width: 92%;
+    }
+    .fdback-frm p input{
+        height: 30px;
+    }
+    .fdback-frm p textarea{
+        height: 200px;
+    }
+
+
+
+}
+
+/* Tablet */
+@media (min-width: 769px) and (max-width: 1024px) {
+    /* Add tablet-specific styles here */
+}
+
+@media (min-width: 1025px){
+
+    .fdback-frm-main{
+        background-color: var(--quaternary-color);
+        width: 600px;
+        transform: translateX(30vw)translateY(10vh) ;
+    }
+
+    .fdback-header{
+        background-color: var(--primary-color);
+        justify-items: center;
+    }
+
+    .fdback-title{
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+    .fdback-frm{
+        padding: 2px;
+        margin-top: -20px;
+        margin-left: 3%;
+    }
+
+    .fdback-frm p input,
+    .fdback-frm p textarea{
+        width: 92%;
+    }
+    .fdback-frm p input{
+        height: 30px;
+    }
+    .fdback-frm p textarea{
+        height: 200px;
+    }
+
+
+
+}

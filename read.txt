@@ -1,3 +1,7 @@
+admin access acc:
+
+lancao - 2vm0$V)FDI_
+
 hello and welcome to the dev side of mindbridge team
 
 these here are all the source file that keeps the apps up and running and intact,
@@ -8,7 +12,7 @@ as of now the one writing this is the current backend cao cao and i will leave m
 as #*# cao cao #*# for everytime this document is updated. do leave yours aswell for ease of referral
 
 ------AUTHOR-----------
-1. #*# cao cao #*#
+1. #*# cao cao #*# - updated 8/18/2025
 2.
 
 update log #1
@@ -31,17 +35,30 @@ once that is done, go to the newly created folder directory and then go to scrip
 from there run activate.bat
 
 after all that go back a level by typing cd ../ and then move the project file into the virtual env folder then go to project directory using the prompt, then you can run the setup.py
+else you can also run this command right here when you are in the project folder on the terminal:
+
+pip install -r requirement.txt
+
+if any other issue arises i have provide a link source to resolved those this is mostly for the ai framework:
+
+	setting environvariable in local machine
+	https://www.howtogeek.com/118594/how-to-edit-your-system-path-for-easy-command-line-access
+
+	ffmpeg instal guide for whisper
+	https://stackoverflow.com/questions/73845566/openai-whisper-filenotfounderror-winerror-2-the-system-cannot-find-the-file
+
 
 
 for now i leave all of the documentation as comments inside the working file inside the project app folder, primarily the files are: 
 
-view.py, 
-forms.py,
-models.py,
-urls.py,
+	view.py, 
+	forms.py,
+	models.py,
+	urls.py,
 
-and for other folder inside the app folder
--templates and static
- these folder contain the html code and the css and javascript code
- #future note: here will be have the ai model as well located like in the static
-  
+the rest are in the template and static folder while still in the same directory, the static contain the style and few javascrips
+while tempates contains the html file.
+
+for html the comment appears based on django structure , which look like this {% comment %}{% endcomment %}, ofcourse alot of script will be using this 
+
+

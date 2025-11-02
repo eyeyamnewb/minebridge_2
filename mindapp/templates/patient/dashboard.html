@@ -5,20 +5,21 @@
 {% comment %}
 div for greeting user base on their name
 {% endcomment %}
-<div class="dash-box crb-F">
-    <div class="user-greet">
+<div class="main-con crb-F">
+    <div class="title-card">
         welcome {{ name }}
     </div>
     <div class="emo crb-F ">
         {% comment %} here wiil be mood selector {% endcomment %}
-        <div class="emo-con">
-            <div class="emo-header crb-HT">
+        <div class="emo-con b-shad-gen crb-F">
+            {% comment %} header for mood selector {% endcomment %}
+            <div class="emo-header head-clr head-font bdr-style crb-HT">
                 <header >
                     How are you feeling today?
                 </header>
             </div>
             
-            <form method="post" class="emo-frm crb-H" action="{% url 'mood_selection' %}">
+            <form method="post" class="emo-frm crb-H" action="{% url 'mindapp:mood_selection' %}">
                 {% csrf_token %}
                 {{ mood_form }}
                 <div class="prv-mod">
@@ -32,17 +33,17 @@ div for greeting user base on their name
     <div class="dashP-i">
         <div class="task-con">
             <div class="task-item">
-                <div class="n-task tas crb-F">
+                <div class="n-task tas b-shad-gen crb-F">
                     {% comment %} this one is for new task {% endcomment %}
-                    <header class="task-head spc1">
+                    <header class="task-head hd-font spc1">
                         <h2>New Task</h2>
                     </header>
                     <div class="tas-div crb-F">{% comment %} divider wkwkw {% endcomment %}</div>
                     <div class="tas-i">
                         {% comment %} new task that need to be complete {% endcomment %}
                         {% for task in new_task %}
-                        <div class="tas-il crb-F">
-                            <form method="POST" action="{% url 'complete_task' %}" class="tasp-frm">
+                        <div class="tas-il bdr-active crb-F">
+                            <form method="POST" action="{% url 'mindapp:complete_task' %}" class="tasp-frm">
                                 {% csrf_token %}
                                 <h2>{{ task.task_title }}</h2>
                                 <div class="tasp-div"></div>
@@ -55,21 +56,21 @@ div for greeting user base on their name
                             </form>
                         </div>
                         {% empty %}
-                        <div class="mt-tas">no new task</div>
+                        <div class="mt-tas mt-font">no new task</div>
                         {% endfor %}
                     </div>
                 </div>
-                <div class="p-task tas crb-F">
+                <div class="p-task tas b-shad-gen crb-F">
                     {% comment %} this one is for pending task {% endcomment %}
-                    <div class="task-head spc1">
+                    <div class="task-head hd-font spc1">
                         <h2>Pending Task</h2>
                     </div>
                     <div class="tas-div crb-F"></div>
-                    <div class="tas-i">
+                    <div class="tas-i ">
                         {% comment %} pending tasks list that need to be complete {% endcomment %}
                         {% for task in pending_task %}
-                        <div class="tas-il crb-F">
-                            <form method="POST" action="{% url 'complete_task' %}" class="tasp-frm">
+                        <div class="tas-il bdr-active crb-F">
+                            <form method="POST" action="{% url 'mindapp:complete_task' %}" class="tasp-frm">
                                 {% csrf_token %}
                                 <h2>{{ task.task_title }}</h2>
                                 <div class="tasp-div"></div>
@@ -82,29 +83,30 @@ div for greeting user base on their name
                             </form>
                         </div>
                         {% empty %}
-                        <div class="mt-tas">no pending task</div>
+                        <div class="mt-tas mt-font">no pending task</div>
                         {% endfor %}
                     </div>
                 </div>
             </div>
         </div>
         <div class="cal-con">
-            <div class="cal-i crb-F">
-                <div class="cal-head spc1">
+            <div class="cal-i b-shad-gen crb-F">
+                <div class="cal-head hd-font spc1">
                     <h2>Calendar</h2>
                 </div>
-                <div class="tas-div crb-F">{% comment %} divider wkwkw {% endcomment %}</div>
+                <div class="tas-div  crb-F">{% comment %} divider wkwkw {% endcomment %}</div>
                 {% comment %} here create if statement for user google auth {% endcomment %}
-                <div class="bsc-cal crb-F">
-                    <div class="cal-nav crb-HT">
+                <div class="bsc-cal bdr-active crb-F">
+                    <div class="cal-nav bdr-style head-clr crb-HT">
                         <header>
                             <a href="?{{ prev_month }}">Previous</a>
                             <span>{{ month }}/{{ year }}</span>
                             <a href="?{{ next_month }}">Next</a>
                         </header>
-                    </div>  
+                    </div> 
+                    <div class="mn-font1">
                     {{ calendar|safe }}  
-                </div>
+                    </div>
                 <div id="appointment-modal" style="display: none;" >
                     <h3>Appointments for <span id="modal-date"></span></h3>
                     <ul id="modal-appointments"></ul>
